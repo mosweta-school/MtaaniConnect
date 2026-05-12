@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "id": "XCJ7rEmLsA4",
+      "name": "deo",
+      "email": "deo@gmail.com",
+      "password": "$2b$10$vk9yniVvCp2UCmHVbRmN0upkenUpx83r3aj.R43uUBIy9F61DwrdO",
+      "role": "user"
+    },
+    {
+      "id": "MFm1mLnKDsA",
+      "name": "jane",
+      "email": "jane@gmail.com",
+      "password": "$2b$10$D42dMYo8ZtDtjpAha8g9tuWCcvXk9N/pGvyFAA/UIHVvoGC4iuib.",
+      "role": "user"
+    }
+  ],
+  "events": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}
