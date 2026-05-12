@@ -119,12 +119,12 @@ localconnect/
 - will be added once the app is made
 
 ## 👥 User Stories
-As a User:
+### As a User:
 - I want to create an event so others can attend
 - I want to see events near my location
 - I want to filter events by category
 - I want to manage my own events
-As an Admin:
+### As an Admin:
 - I want to monitor users and events
 - I want to delete inappropriate content
 - I want to view system analytics
@@ -159,29 +159,40 @@ npm run dev
 ```
 ## 📌 GitHub Workflow
 ### Branches
-- main → production-ready code (final submission)
-- development → integration branch
+- main → production-ready code (final submission - all contributors must approve it)
+- development → integration branch (at least one contributor must approve)
 - feature/* → individual features
 ### How to work
 1. A contributor picks a task from Trello
-2. They create a feature branch from development:
+2. They pull what is in origin development branch first
+```bash
+git pull origin development
+```
+3. They create a feature branch from development:
 ```bash
 git checkout -b feature/feature-name
 ```
-3. They complete their work and commit changes:
+4. They complete their work and commit changes:
 ```bash
 git add .
 git commit -m "Add feature description"
+```
+5. They pull from origin development again (to prevent merge conflict)
+```bash
+git pull origin development
+```
+6. They then publish their branch to github
+```bash
 git push origin feature/feature-name
 ```
-4. A Pull Request (PR) is created on GitHub:
+7. They create a pull request and assign to another contributor:
 ```bash
 Base branch: development
 Compare branch: feature/feature-name
 ```
-5. The PR is reviewed by the team / Scrum Master
-6. Once approved, it is merged into development
-7. Once the entire app works we then push the final working code to main
+8. The PR is reviewed by the team / Scrum Master
+9. Once approved, it is merged into development
+10. Once the entire app works we then push the final working code to main
 ## 👨‍💻 Team Roles
 - Authentication & Backend API
 - Event CRUD & Database
