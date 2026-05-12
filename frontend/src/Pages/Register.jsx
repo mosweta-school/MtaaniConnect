@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState} from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../Services/authService";
+import toast,{Toaster} from "react-hot-toast";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ function Register() {
     password: "",
     confirmPassword: "",
   });
+  const navigate = useNavigate();
 
   const [message, setMessage] = useState("");
 
@@ -22,8 +24,11 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (formData.password !== formData.confirmPassword) {
+    if (
+      formData.password !== formData.confirmPassword
+    ) {
       setMessage("Passwords do not match");
+      toast.error("Passwords do not match");
       return;
     }
 
