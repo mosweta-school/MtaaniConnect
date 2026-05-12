@@ -1,7 +1,6 @@
 import React, { useState} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../Services/authService";
-import toast,{Toaster} from "react-hot-toast";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -28,20 +27,29 @@ function Register() {
       formData.password !== formData.confirmPassword
     ) {
       setMessage("Passwords do not match");
-      toast.error("Passwords do not match");
+      
       return;
     }
 
     try {
       const data = await registerUser(formData);
       setMessage(data.message);
+
+      console.log(data);
+        
+        setTimeout(() => {
+            navigate("/login");
+            }, 2000);
+                        
     } catch (error) {
       setMessage(error.response?.data?.message || "Registration failed");
+      
     }
   };
 
   return (
     <section className="mt-8 items-center">
+    
       <div className="place-items-center">
         <h1 className="font-extrabold text-3xl">MtaaniConnect</h1>
         <h2 className="text-blue-300">Discover events near you</h2>
