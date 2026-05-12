@@ -157,6 +157,13 @@ cd frontend
 npm install
 npm run dev
 ```
+5. Server
+To start the server (db.json)
+open another terminal
+```bash
+cd backend
+npm run server
+```
 ## 📌 GitHub Workflow
 ### Branches
 - main → production-ready code (final submission - all contributors must approve it)
