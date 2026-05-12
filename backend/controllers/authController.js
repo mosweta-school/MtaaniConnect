@@ -78,30 +78,45 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
-  const user = users.find((user) => user.email === email);
+  try {
+    const { data: users } = await axios.get(
+      "http://localhost:8000/users"
+    );
 
-  if (!user) {
-    return res.status(400).json({
-      message: "Invalid credentials",
+    const user = users.find(
+      (user) => user.email === email
+    );
+
+    if (!user) {
+      return res.status(400).json({
+        message: "Invalid credentials",
+      });
+    }
+
+    const isMatch = await bcrypt.compare(
+      password,
+      user.password
+    );
+
+    if (!isMatch) {
+      return res.status(400).json({
+        message: "Invalid credentials",
+      });
+    }
+
+    res.status(200).json({
+      message: "Login successful",
+      token: generateToken(user),
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
     });
   }
-
-  const isMatch = await bcrypt.compare(password, user.password);
-
-  if (!isMatch) {
-    return res.status(400).json({
-      message: "Invalid credentials",
-    });
-  }
-
-  res.status(200).json({
-    message: "Login successful",
-    token: generateToken(user),
-    user: {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-    },
-  });
 };
