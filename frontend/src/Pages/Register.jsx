@@ -1,72 +1,16 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
+import { useNavigate } from "react-router-dom";
 import { registerUser } from "../Services/authService";
+import toast,{Toaster} from "react-hot-toast";
 
 function Register(){
-    return(
-        <>
-
-        <section className='mt-8 items-center '>
-                <div className='place-items-center'>
-
-                    <h1 className='font-extrabold text-3xl'>MtaaniConnect</h1>
-                    <h2 className='text-blue-300 '>Discover events near you</h2>
-
-                </div>
-
-
-
-                <form className='flex-col mt-5 flex'>
-
-                    <input 
-                    required
-                    type='name'
-                    className='rounded-xl border-zinc-400 m-  px-4 py-2 border-2 mr-20 ml-20 mt-5'
-                    placeholder='Enter your Full Name'></input>
-
-
-                    <input
-                    required
-                    type='email'
-                    className='border-2 border-zinc-400 px-4 py-2 rounded-xl mt-5 r-20 ml-20 mr-20'
-                    placeholder='Enter your email'></input>
-
-                    <input 
-                    required
-                    type='password'
-                    className='rounded-xl border-zinc-400  px-4 py-2 border-2 mr-20 ml-20 mt-5'
-                    placeholder='Enter your password'></input>
-
-                    <input 
-                    required
-                    type='password'
-                    className='rounded-xl border-zinc-400  px-4 py-2 border-2 mr-20 ml-20 mt-5'
-                    placeholder='Confrim your password'></input>
-
-
-                <button className='text-white hover:bg-sky-800 rounded-2xl mt-6 ml-30 mr-30 py-2 bg-sky-600'>CREATE ACCOUNT </button>
-
-            </form>
-
-
-
-
-
-        </section>
-
-
-
-
-
-        </>
-
-    )
-function Register() {
-  const [formData, setFormData] = useState({
+      const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+  const navigate = useNavigate();
 
   const [message, setMessage] = useState("");
 
@@ -84,6 +28,7 @@ function Register() {
       formData.password !== formData.confirmPassword
     ) {
       setMessage("Passwords do not match");
+      toast.error("Passwords do not match");
       return;
     }
 
@@ -93,55 +38,87 @@ function Register() {
       setMessage(data.message);
 
       console.log(data);
+        toast.success(data.message);
+        navigate("/login");    
     } catch (error) {
       setMessage(
         error.response?.data?.message ||
           "Registration failed"
       );
+      toast.error(error.response?.data?.message || "Registration failed");
     }
   };
 
-  return (
-    <div>
-      <h1>Register</h1>
+    return(
+        <>
+        <Toaster position="top-right" reverseOrder={false} />
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          onChange={handleChange}
-        />
+        <section className='mt-8 items-center '>
+                <div className='place-items-center'>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-        />
+                    <h1 className='font-extrabold text-3xl'>MtaaniConnect</h1>
+                    <h2 className='text-blue-300 '>Discover events near you</h2>
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-        />
+                </div>
 
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          onChange={handleChange}
-        />
 
-        <button type="submit">
-          Register
-        </button>
-      </form>
 
-      <p>{message}</p>
-    </div>
-  );
+                <form onSubmit={handleSubmit} className='flex-col mt-5 flex'>
+                    
+
+                    <input 
+                    required
+                    
+                    type="text"
+                    name="name"
+          
+                    onChange={handleChange}
+                    className='rounded-xl border-zinc-400 m-  px-4 py-2 border-2 mr-20 ml-20 mt-5'
+                    placeholder='Enter your Full Name'/>
+
+
+                    <input
+                    required
+                    type='email'
+                    name="email"
+                    onChange={handleChange}
+                    className='border-2 border-zinc-400 px-4 py-2 rounded-xl mt-5 r-20 ml-20 mr-20'
+                    placeholder='Enter your email'/>
+
+                    <input 
+                    required
+                    type='password'
+                    name="password"
+                    onChange={handleChange}
+                    className='rounded-xl border-zinc-400  px-4 py-2 border-2 mr-20 ml-20 mt-5'
+                    placeholder='Enter your password'/>
+
+                    <input 
+                    required
+                    type="password"
+                    name='confirmPassword'
+          
+                    onChange={handleChange}
+                    className='rounded-xl border-zinc-400  px-4 py-2 border-2 mr-20 ml-20 mt-5'
+                    placeholder='Confrim your password'/>
+<p>Already have an account? </p>
+
+                <button className='text-white hover:bg-sky-800 rounded-2xl mt-6 ml-30 mr-30 py-2 bg-sky-600'>CREATE ACCOUNT </button>
+            </form>
+
+
+
+
+
+        </section>
+
+
+
+
+
+        </>
+
+    )
 }
 
 export default Register;
