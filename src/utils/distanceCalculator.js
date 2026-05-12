@@ -1,0 +1,2 @@
+// Contains reusable logic that is NOT tied to backend communication.
+// contains functions that help your app work in this case calculating distance between two locations using the Haversine formula. You can import and use these functions in your components or services as needed.
