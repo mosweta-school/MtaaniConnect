@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import API from "../services/api";
+import API from "../../../src/services/api";
 
-import DashboardCards from "../../frontend/src/Components/DashboardCards";
+import DashboardCards from "../Components/DashboardCards";
 
 import Charts from "../Components/Charts";
 
