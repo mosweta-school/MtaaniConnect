@@ -11,6 +11,18 @@ function CreateEvent(){
     const[maxAttendees, setMaxAttendees] = useState(0);
 
     const handleSubmit = async(e)=>{
+    // Validate that all required fields are filled out
+    if(!title || !category || !description || !date || !time || !location){
+        alert('Please fill out all required fields');
+        return;
+    }
+    
+    // Validate datatypes
+    if(isNaN(maxAttendees)){
+        alert('Max Attendees must be a number');
+        return;
+    }
+    
     // Prevents reload of page on form submission
     e.preventDefault();
 
@@ -35,6 +47,16 @@ function CreateEvent(){
         },
         body: JSON.stringify(eventData)
     });
+    
+    alert('Event created successfully!');
+
+    setTitle('');
+    setCategory('');
+    setDescription('');
+    setDate('');
+    setTime('');
+    setLocation('');
+    setMaxAttendees(0);
 
 
     }
@@ -61,6 +83,7 @@ function CreateEvent(){
                     className='border-2 text-sm py-3 border-zinc-400 rounded-xl'
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}
+                    type='text'
                     ></input>
                 </div>
 
@@ -94,6 +117,7 @@ function CreateEvent(){
                     className='border-2 text-sm py-3 border-zinc-400 rounded-xl'
                     onChange={(e) => setDescription(e.target.value)}
                     value={description}
+                    type='text'
                     ></textarea>
 
                 </div>
@@ -147,6 +171,7 @@ function CreateEvent(){
                     <input className='rounded-xl py-3 border-2 border-zinc-400' 
                     onChange={(e) => setLocation(e.target.value)}
                     value={location}
+                    type='text'
                     ></input>
 
                 </div>
