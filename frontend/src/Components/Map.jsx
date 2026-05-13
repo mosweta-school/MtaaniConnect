@@ -1,14 +1,12 @@
 import {
   MapContainer,
-  TileLayer,
   Marker,
   Popup,
+  TileLayer,
 } from "react-leaflet";
-
-import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 
-// FIX leaflet default icon issue
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -23,34 +21,32 @@ L.Icon.Default.mergeOptions({
 const Map = ({ userLocation, events = [] }) => {
   if (!userLocation) {
     return (
-      <div className="h-[500px] flex items-center justify-center bg-gray-100 rounded-2xl">
+      <div className="flex h-[500px] items-center justify-center rounded-2xl bg-gray-100">
         Loading map...
       </div>
     );
   }
 
   return (
-    <div className="h-[500px] w-full rounded-2xl overflow-hidden shadow-lg">
+    <div className="h-[500px] w-full overflow-hidden rounded-2xl shadow-lg">
       <MapContainer
         center={[userLocation.lat, userLocation.lng]}
-        zoom={13}
-        scrollWheelZoom={true}
         className="h-full w-full"
+        scrollWheelZoom
+        zoom={13}
       >
         <TileLayer
-          attribution="OpenStreetMap"
+          attribution="&copy; OpenStreetMap contributors"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {/* USER MARKER */}
         <Marker position={[userLocation.lat, userLocation.lng]}>
           <Popup>You are here</Popup>
         </Marker>
 
-        {/* EVENT MARKERS */}
         {events.map((event) => (
           <Marker
-            key={event._id}
+            key={event._id || `${event.latitude}-${event.longitude}`}
             position={[event.latitude, event.longitude]}
           >
             <Popup>
