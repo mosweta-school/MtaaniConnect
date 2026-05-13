@@ -15,6 +15,17 @@
       "role": "user"
     }
   ],
-  "events": [],
+  "events": [
+    {
+      "title": "Nairobi Tech Fair",
+      "category": "tech",
+      "description": "All about technology",
+      "date": "2026-05-13",
+      "time": "15:00",
+      "location": "Lavington",
+      "maxAttendees": "50",
+      "id": "7xBRRJKMA9o"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
