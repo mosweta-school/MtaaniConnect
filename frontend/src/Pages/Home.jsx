@@ -17,22 +17,22 @@ function Home(){
 
 {/*////////////////////////////////////////////Navigation Panel////////////////////////////////////////////////////////*/}
       
-        <nav className='bg-sky-800  flex gap-100 flex-row py-6'>
+        <nav className='bg-sky-800 justify-between flex py-3 flex-row '>
 
-            <h2 className=' text-white hover:underline m-1 font-bold'>Home</h2>
+            <h2 className=' text-white hover:underline m-2 font-bold'>Home</h2>
 
-            <h2 className='font-bold hover:underline text-white '>Create Event</h2>
+            <h2 className='font-bold hover:underline m-2 text-white '>Create Event</h2>
 
-            <h2 className='font-bold hover:underline text-white'>Profile</h2>
+            <h2 className='font-bold hover:underline m-2 text-white'>Profile</h2>
 
 
         </nav>
 
 {/*//////////////////////////////////////////////////Search Bar////////////////////////////////////////////////*/}
-        <div>
-            <form>
+        <div className='m-3'>
+            <form >
 
-                <div>
+                <div className='justify-center'>
 
 
                     <input
@@ -57,7 +57,7 @@ function Home(){
         </div>
 {/*////////////////////////////////////////Category Panel//////////////////////////////////////////////////////*/}
 
-        <div className='flex  gap-50 flex-cols'>
+        <div className='flex  justify-between flex-cols'>
 
             <button className=' text-white bg-sky-600 rounded-xl py-1 px-3 hover:bg-sky-800 '>All</button>
             <button className=' text-white bg-sky-600 py-1 px-3 hover:bg-sky-800 rounded-xl'>Tech</button>
@@ -71,13 +71,16 @@ function Home(){
 
 {/*/////////////////////////////////////////////////Event Cards//////////////////////////////////////////////*/}
 
-        <div className='border-bg-zinc border-2 py-46 m-6 overflow-auto rounded-xl shadow-2xl '>
+            <h2 className='text-xl mt-4 ml-6 justify-self-start font-bold'>Events</h2>
+
+
+        <div className='border-zinc-400  border-2 py-46 m-6 overflow-auto rounded-xl shadow-2xl '>
+           
             
-            <h2 className='text-xl font-bold'>Events</h2>
 
         </div>
 
-/
+
 
 
 
