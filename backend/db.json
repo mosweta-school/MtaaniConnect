@@ -27,5 +27,6 @@
       "id": "7xBRRJKMA9o"
     }
   ],
-  "$schema": "./node_modules/json-server/schema.json"
+  "$schema": {"./node_modules/json-server/schema.json": "#"}
+
 }

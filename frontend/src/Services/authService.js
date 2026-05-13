@@ -4,6 +4,7 @@ import axios from "axios";
 
 const API_URL = "http://localhost:5000/api/auth";
 
+// Register user function
 export const registerUser = async (userData) => {
   try {
     console.log("Sending data:", userData);
@@ -17,6 +18,7 @@ export const registerUser = async (userData) => {
 
     return response.data;
 
+// Error handling with detailed logging for debugging
   } catch (error) {
 
     console.log("FULL ERROR:", error);
@@ -40,10 +42,11 @@ export const registerUser = async (userData) => {
   }
 };
 
+// Function to log in a user by sending their credentials to the backend and handling the response.
 export const loginUser = async (userData) => {
     try {
     console.log("Sending data:", userData);
-  const response = await axios.post(
+    const response = await axios.post(
     `${API_URL}/login`,
     userData
   );

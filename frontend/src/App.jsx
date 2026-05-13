@@ -9,10 +9,7 @@ import MyEvents from "./Pages/MyEvents"
 
 import Layout from "./Components/Layout"
 import { AuthProvider } from "./context/AuthContext";
-
 function App() {
-
-
   return (
     <AuthProvider>
     <Router>

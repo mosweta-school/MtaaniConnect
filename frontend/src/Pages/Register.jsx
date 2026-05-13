@@ -13,11 +13,13 @@ function Register() {
 
   const [message, setMessage] = useState("");
 
+  // Handles changes in the form inputs and updates the formData state accordingly.
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+    
   };
 
   const handleSubmit = async (e) => {
