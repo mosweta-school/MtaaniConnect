@@ -3,13 +3,18 @@
 const eventSchema = {
     id: Number,
     title: String,
-    location:String,
+    location:{
+        name: String,
+        latitude: Number,
+        longitude: Number
+    },
     date: String,
     userId: String,
     timeOfEvent: String,
-    organizer: String,
-    Category: String,
-    Attendees: Array,
+    organizer: String, //User Id of the organizer
+    category: String,
+    maxAttendees: Number,   
+    attendees: [String] //Array of User Ids of attendees
 }
 
 export default eventSchema; 

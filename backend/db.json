@@ -15,6 +15,17 @@
       "role": "user"
     }
   ],
-  "events": [],
+  "events": [
+    {
+      "title": "Tech Fair",
+      "category": "tech",
+      "description": "Nairobi Tech Fair",
+      "date": "2026-05-13",
+      "time": "21:40",
+      "location": "Nairobi",
+      "maxAttendees": "0",
+      "id": "0Koc4CWHbXk"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
