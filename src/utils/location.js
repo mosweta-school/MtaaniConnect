@@ -11,10 +11,7 @@ export const getUserLocation = () => {
           lng: position.coords.longitude,
         });
       },
-      (error) => reject(error.message),
-      {
-        enableHighAccuracy: true,
-      }
+      (error) => reject(error.message)
     );
   });
 };

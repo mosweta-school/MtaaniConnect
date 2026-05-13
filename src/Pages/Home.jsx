@@ -1,16 +1,12 @@
-import React from 'react';
-import EventList from '../Components/EventList';
+import NearbyEvents from "../Components/NearbyEvents";
 
-function Home(){
-    return(
-        <div>
-            <h1>Home page</h1>
-            <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-            <EventList />
-        </div>
-    )
-
+function Home() {
+  return (
+    <div>
+      <h1 className="text-2xl font-bold">Home Page</h1>
+      <NearbyEvents />
+    </div>
+  );
 }
+
 export default Home;
