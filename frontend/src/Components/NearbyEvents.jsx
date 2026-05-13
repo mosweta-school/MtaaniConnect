@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import API from "../services/api";
+import API from "../Services/api";
 import { getUserLocation } from "../utils/location";
 import { calculateDistance } from "../utils/distance";
 import Map from "./Map";
 
 const NearbyEvents = () => {
-  const [events, setEvents] = useState([]);
   const [nearbyEvents, setNearbyEvents] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -46,7 +45,6 @@ const NearbyEvents = () => {
             event.distance <= 10
         );
 
-        setEvents(data);
         setNearbyEvents(filtered);
       } catch (err) {
         setError(err.message || "Failed to load events");
