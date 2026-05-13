@@ -1,5 +1,8 @@
 import React from 'react';
 import EventList from '../Components/EventList';
+import NearbyEvents from "../Components/NearbyEvents";
+
+
 
 function Home(){
     return(
@@ -27,6 +30,13 @@ function Home(){
 
 
         </nav>
+
+        <div>
+
+      <NearbyEvents />
+
+        </div>
+
 
 {/*//////////////////////////////////////////////////Search Bar////////////////////////////////////////////////*/}
         <div className='m-3'>

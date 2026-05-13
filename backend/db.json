@@ -13,6 +13,13 @@
       "email": "jane@gmail.com",
       "password": "$2b$10$D42dMYo8ZtDtjpAha8g9tuWCcvXk9N/pGvyFAA/UIHVvoGC4iuib.",
       "role": "user"
+    },
+    {
+      "id": "OxzfeAOeHLI",
+      "name": "Obama",
+      "email": "obama360@gmail.com",
+      "password": "$2b$10$y4pDOg1lrYjulgjh6czN.uWeXU2ihuPkHTsEMLuZ85GcqevgfkuLK",
+      "role": "user"
     }
   ],
   "events": [

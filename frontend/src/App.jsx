@@ -3,7 +3,6 @@ import AdminDashboard from "./Pages/AdminDashboard"
 import Home from "./Pages/Home"
 import Login from "./Pages/Login"
 import Register from "./Pages/Register"
-import ProtectedRoute from "./Components/ProtectedRoute"
 import CreateEvent  from "./Pages/CreateEvent"
 import MyEvents from "./Pages/MyEvents"
 
