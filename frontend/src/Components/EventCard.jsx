@@ -1,9 +1,8 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
+
 function EventCard({ event }){
-    function handleEdit(){
-        // Implement edit functionality here
-        console.log("Edit event:", event.id);
-        
-    }
     
     function handleDelete(){
         // Implement delete functionality here
@@ -45,10 +44,12 @@ function EventCard({ event }){
 
 
                 <div className="rounded-2xl flex  flex-row m-3 bg-gray-200 justify-end">
-
+                
+                <Link to={`/edit-event/${event.id}`}>
                     <button className= "bg-zinc-300 flex-2 rounded-xl m-1 hover:bg-gray-400 border-zinc-400"
-                    onClick={handleEdit}
+                
                     >Edit</button>
+                </Link>
 
                     <button className="bg-sky-800 hover:bg-sky-600 rounded-xl m-1 py-2 text-white"
                     onClick={handleDelete}
