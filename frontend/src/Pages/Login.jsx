@@ -1,11 +1,15 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState, useContext} from "react";
 =======
 import React, { useState,useContext} from "react";
 >>>>>>> 62e60fc73ecb788e9eca582e3bc89f4bebb1d7d4
+=======
+import { useState,useContext} from "react";
+>>>>>>> 82a5524a9904504d51e392f025221e0f69f2430b
 import { useNavigate, Link } from "react-router-dom";
 import { loginUser } from "../Services/authService";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../context/authContext";
 import toast,{Toaster} from "react-hot-toast";
 
 

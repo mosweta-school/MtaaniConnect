@@ -1,7 +1,5 @@
 //Used to display events on a map but can be implemented as a bonus feature after the main functionalities are implemented
 //for now the events card can simply display "Nairobi - 2km away"
-import React from 'react';
-
 function MapComponent(){
     return(
         <div>
