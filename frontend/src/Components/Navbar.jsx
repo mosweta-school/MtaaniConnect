@@ -85,18 +85,30 @@ function Navbar() {
           >
             Home
           </Link>
+
+         
               
             </>
           )}
 
           {/* ADMIN */}
           {user && user.role === "admin" && (
+            <>
+            <h1 className="text-xl text-gray-200 font-bold">Welcome {user.name}👋</h1>
             <Link
-              to="/dashboard"
-              className=" text-xl text-blue-400 hover:text-blue-500 font-medium"
+            to="/"
+            className="font-semibold  text-xl text-gray-200 hover:text-blue-500 transition hover:underline"
+          >
+            Home
+          </Link>
+            
+            <Link
+              to="/admin"
+              className=" text-xl text-gray-200 hover:text-blue-500 font-medium"
             >
               Dashboard
             </Link>
+            </>
           )}
 
           {/* PROFILE */}
@@ -139,7 +151,10 @@ function Navbar() {
           )}
 
           {user && user.role === "admin" && (
-            <Link to="/dashboard">Dashboard</Link>
+            <>
+            <Link to="/">Home</Link>
+            <Link to="/admin">Dashboard</Link>
+            </>
           )}
 
           {user && (
