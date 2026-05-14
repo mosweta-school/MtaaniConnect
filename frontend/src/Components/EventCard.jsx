@@ -6,10 +6,29 @@ function EventCard({ event }){
     
     function handleDelete(){
         // Implement delete functionality here
-        console.log("Delete event:", event.id);
+        fetch(`http://localhost:8000/events/${event.id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Event deleted successfully');
+                // Optionally, you can also remove the event from the UI here
+                window.location.reload(); // Simple way to refresh the page and show updated events
+            } else {
+                alert('Failed to delete event');
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting event:', error);
+            alert('An error occurred while deleting the event');
+        });
+
     }
 
-    return(
+    return
 
     <section className="shadow-gray-300 border-2 border-gray-200 rounded-3xl m-6">
 
@@ -67,7 +86,7 @@ function EventCard({ event }){
 
 
 
-    )
+    
 
 }
 export default EventCard;

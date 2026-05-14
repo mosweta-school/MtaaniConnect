@@ -2,12 +2,8 @@ import { useEffect, useState } from "react";
 import EventList from "../Components/EventList";
 import { Link } from "react-router-dom";
 import API from "../Services/api";
+import { Events } from "leaflet";
 
-const fallbackEvents = [
-  {
-    id: "static-preview-event",
-  },
-];
 
 
 function MyEvents() {
@@ -36,7 +32,7 @@ function MyEvents() {
     fetchMyEvents();
   }, []);
 
-  const visibleEvents = myEvents.length > 0 ? myEvents : fallbackEvents;
+  const visibleEvents = myEvents.length > 0 ? myEvents : [];
   return (
     <>
     <section>
@@ -74,7 +70,7 @@ function MyEvents() {
       </div>
 
       {/*///////////////////My Event List/////////////////*/}
-
+      {/* ✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘✘*/}
       <EventList events={myEvents} />
 
     </section>
