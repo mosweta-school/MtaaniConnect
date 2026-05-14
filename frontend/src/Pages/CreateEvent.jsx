@@ -76,12 +76,13 @@ const eventData = {
         <>
         <section>
 
-            <div>
-                <h2 className='text-2xl text-center '>Create Event</h2>
+            <div className='bg-sky-800 mt-4'>
+                <h2 className='text-2xl text-white font-bold text-center '>Create Event</h2>
 
             </div>
 
             <form>
+{/*/////////////////////////////////////title input///////////*/}
 
                 <div className='flex-col m-4 flex'>
 
@@ -98,7 +99,8 @@ const eventData = {
                 </div>
 
                 <div className='flex-col m-4 flex'>
-{/*Event Category Selection */}
+
+{/*/////////////////////Event Category Selection/////////////////// */}
                     <label>Category</label>
                     <select
                     required
@@ -117,6 +119,7 @@ const eventData = {
 
 
                 </div>
+{/*/////////////////////////////////////description input///////////*/}
 
                 <div className='flex m-4 flex-col'>
                     <label>Description</label>
@@ -131,6 +134,8 @@ const eventData = {
                     ></textarea>
 
                 </div>
+{/*/////////////////////////////////////date input///////////*/}
+
 
                 <div className='gap-6 flex m-4 flex-row'>
                     <div className='flex flex-col'>
@@ -152,6 +157,7 @@ const eventData = {
 
                     </div>
 
+{/*/////////////////////////////////////time input///////////*/}
                     <div className='flex-col flex'>
 
                          <label>Time</label>
@@ -175,6 +181,7 @@ const eventData = {
 
                 </div>
 
+{/*/////////////////////////////////////location input///////////////////////////////*/}
                 <div className='flex m-4 flex-col'>
                     <label>Location</label>
 
@@ -192,7 +199,7 @@ const eventData = {
                     Select Event Location on Map
                 </label>
 
-                <div className="h-[300px] overflow-hidden rounded-2xl">
+                <div className="h-300px overflow-hidden rounded-2xl">
 
                     <MapContainer
                     center={[-1.286389, 36.817223]}
@@ -225,7 +232,7 @@ const eventData = {
                 )}
                 </div>
 
-
+{/*///////////////////////////attendees input/////////////*/}
 
                 <div className='flex m-4 flex-col'>
 
@@ -240,6 +247,8 @@ const eventData = {
 
 
                 </div>
+
+                {/*////////////////////button submission///////////////*/}
 
                 <div className='flex justify-center mt-2'>
                     <button className='bg-sky-600 hover:bg-sky-800 text-white py-3 px-6 rounded-xl font-medium text-sm'

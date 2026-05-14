@@ -19,6 +19,11 @@ function EventList(){
 
           
         </div>
+        <div className='m-6'>
+           <EventCard />
+
+        </div>
+
 
 
       </div>
