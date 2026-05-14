@@ -76,8 +76,8 @@ const eventData = {
         <>
         <section>
 
-            <div className='bg-sky-800 mt-4'>
-                <h2 className='text-2xl text-white font-bold text-center '>Create Event</h2>
+            <div className='bg-sky-800'>
+                <h2 className=' text-white text-3xl text-center '>Create Event</h2>
 
             </div>
 
@@ -199,7 +199,7 @@ const eventData = {
                     Select Event Location on Map
                 </label>
 
-                <div className="h-300px overflow-hidden rounded-2xl">
+                <div className="h-[300px] overflow-hidden rounded-2xl">
 
                     <MapContainer
                     center={[-1.286389, 36.817223]}
