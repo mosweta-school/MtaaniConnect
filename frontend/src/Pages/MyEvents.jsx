@@ -8,7 +8,7 @@ function MyEvents() {
     <>
     <section>
 
-      <div className="bg-sky-800 flex flex-col gap-4 p-6 ">
+      <div className="bg-sky-800 mt-4 flex flex-col gap-4 p-6 ">
 
         <h2 className="text-4xl font-extrabold text-white">My Events</h2>
 
