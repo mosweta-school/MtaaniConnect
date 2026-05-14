@@ -1,36 +1,52 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import EventList from "../Components/EventList";
+import API from "../Services/api";
 
+const fallbackEvents = [
+  {
+    id: "static-preview-event",
+  },
+];
 
 
 function MyEvents() {
-const [searchItem, setSearchItem] = useState('');
+  
+  const [myEvents, setMyEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const handleSearch = () => {
-    // Implement search functionality here
-    console.log('Searching for:', searchItem);
-    await fetch(`http://localhost:8000/events?search=${searchItem}`)
-      .then(response => response.json())
-      .then(data => {
-        // Handle the search results here
-        console.log('Search results:', data);
-      })
-      .catch(error => {
-        console.error('Error fetching search results:', error);
-      }); 
+  useEffect(() => {
+    const fetchMyEvents = async () => {
+      try {
+        const res = await API.get("/events/my-events");
 
-  }
+        const data = Array.isArray(res.data)
+          ? res.data
+          : res.data?.events || [];
 
+        setMyEvents(data);
+      } catch (err) {
+        setError(err.response?.data?.message || err.message || "Failed to load your events");
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchMyEvents();
+  }, []);
+
+  const visibleEvents = myEvents.length > 0 ? myEvents : fallbackEvents;
   return (
     <>
     <section>
 
-      <div className="bg-blue-700">
+      <div className="bg-sky-800 mt-4 flex flex-col gap-4 p-6 ">
 
-        <h2 className="text-4xl ml-6 font-extrabold text-white">My Events</h2>
+        <h2 className="text-4xl font-extrabold text-white">My Events</h2>
 
-        <button className="bg-white rounded-2xl m-6 ">Create Event</button>
+        <button className="text-xl hover:bg-blue-50 rounded-2xl bg-white">Create Event</button>
 
+        
 
       </div>
 
@@ -38,19 +54,28 @@ const [searchItem, setSearchItem] = useState('');
 
       <div>
 
-        <div className="rounded-xl border-2 m-6 flex flex-col bg-gray-200 border-zinc-400">
-          <h2 className=" text-gray-600">Total Events</h2>
-          <p  font-extrabold>12</p>
+        <div className="rounded-3xl border-2 m-6 flex h-44 w-44 hover:bg-gray-300 flex-col justify-between bg-gray-200 border-zinc-400 p-5">
+          <h2 className="text-gray-600 font-semibold">Total Events</h2>
+          <p className="text-4xl font-extrabold text-gray-900">
+            {loading ? "..." : visibleEvents.length}
+          </p>
 
         </div>
+
+        {error && (
+          <p className="m-6 text-sm text-red-500">
+            {error}
+          </p>
+        )}
 
 
       </div>
 
       {/*///////////////////My Event List/////////////////*/}
 
-      <div className="border-gray-300 border-2 m-6 rounded-xl">
+      <EventList events={myEvents} />
 
+<<<<<<< HEAD
         <h2 className="font-bold text-3xl">My Event List</h2>
 
 
@@ -116,6 +141,8 @@ const [searchItem, setSearchItem] = useState('');
 
 
         </section>
+=======
+>>>>>>> 644978e43717bede2f33c0c2e6c5520c7c18be5a
 
 
 

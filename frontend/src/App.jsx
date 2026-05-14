@@ -6,10 +6,11 @@ import Login from "./Pages/Login"
 import Register from "./Pages/Register"
 import CreateEvent  from "./Pages/CreateEvent"
 import MyEvents from "./Pages/MyEvents"
-import About from "./Pages/About"
 
 import Layout from "./Components/Layout"
 import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./RouteProtect/ProtectedRoute"
+import AdminOnlyRoute from "./RouteProtect/AdminProtect"
 
 function App() {
 
@@ -20,14 +21,16 @@ function App() {
       <Routes>
 
         <Route path="/" element={<Layout> <Home /> </Layout>} />
-        <Route path="/about" element={<Layout> <About /> </Layout>} />
         <Route path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Register /> } />
-        <Route path="/my-events" element={<Layout> <MyEvents /> </Layout>} />
-        <Route path="/admin" element={<Layout> <AdminDashboard /> </Layout>} />
-        <Route path="/admin-analytics" element={<Layout> <AdminDashboard2 /> </Layout>} />
-        <Route path="/create-event" element={<Layout> <CreateEvent /> </Layout>} />
+        
+          <Route path="/my-events" element={<ProtectedRoute> <Layout> <MyEvents /> </Layout> </ProtectedRoute>} />
+          <Route path="/create-event" element={<ProtectedRoute><Layout> <CreateEvent /> </Layout> </ProtectedRoute>} />
 
+        
+        
+        <Route path="/admin" element={<AdminOnlyRoute><Layout> <AdminDashboard /> </Layout> </AdminOnlyRoute>} />
+        
       </Routes>
     </Router>
     </AuthProvider>

@@ -115,7 +115,13 @@ export const getMyEvents = async (req, res) => {
 
   try {
 
-    const { userId } = req.params;
+    const userId = req.user?.id;
+
+    if (!userId) {
+      return res.status(401).json({
+        message: "User not authenticated",
+      });
+    }
 
     const response = await axios.get(EVENTS_API);
 
@@ -137,4 +143,3 @@ export const getMyEvents = async (req, res) => {
 
   }
 };
-

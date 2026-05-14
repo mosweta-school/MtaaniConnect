@@ -22,11 +22,11 @@
       "role": "user"
     },
     {
-      "id": "BXj-bgP2KwE",
-      "name": "David ",
-      "email": "davidkm.official@gmail.com",
-      "password": "$2b$10$TPJpcixU8bi.b1tcQjr/cOF.6wWn2DuLWIbFeF8BdXEu2T1vBmLSy",
-      "role": "user"
+      "id": "OGpHLOuuUDs",
+      "name": "deo",
+      "email": "shinikizua@gmail.com",
+      "password": "$2b$10$7eftfVvdKJ2RkUnthwwpFOmKcxwNXRW.BHj5vT4HYicIXwWbSQB1u",
+      "role": "admin"
     }
   ],
   "events": [

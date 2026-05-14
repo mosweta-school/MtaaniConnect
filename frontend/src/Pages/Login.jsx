@@ -66,6 +66,8 @@ function Login(){
 
                 <form onSubmit={handleSubmit} className='flex-col mt-5 flex'>
 
+      {/*///////////////////My Email list/////////////////*/}
+
                     <div className='flex flex-col mb-4'>
 
                         <label className='text-sm font-medium mr-20 ml-20 text-zinc-600 '>Email</label>
@@ -74,10 +76,12 @@ function Login(){
                           type='email'
                           name="email"
                           onChange={handleChange}
-                          className='border-2 border-zinc-400 px-4 py-2 rounded-xl mt-5 r-20 ml-20 mr-20'
+                          className='border-2 focus:bg-blue-50 border-zinc-400 px-4 py-2 rounded-xl mt-5 r-20 ml-20 mr-20'
                           placeholder='Enter your email'></input>
 
                     </div>
+
+      {/*///////////////////My Password/////////////////*/}
 
                     <div className='flex flex-col mb-4'>
                         <label className='text-sm font-medium mr-20 ml-20 text-zinc-600 '>Password</label>
@@ -87,7 +91,7 @@ function Login(){
                          type='password'
                          name="password"
                          onChange={handleChange}
-                         className='rounded-xl border-zinc-400  px-4 py-2 border-2 mr-20 ml-20 mt-5'
+                         className='rounded-xl focus:bg-blue-50 border-zinc-400  px-4 py-2 border-2 mr-20 ml-20 mt-5'
                          placeholder='Enter your password'></input>
 
                     </div>

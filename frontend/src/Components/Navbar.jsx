@@ -55,12 +55,7 @@ function Navbar() {
             Home
           </Link>
 
-          <Link
-            to="/about"
-            className="font-semibold text-xl text-gray-200 hover:text-blue-500 transition hover:underline"
-          >
-            About
-          </Link>
+          
               <Link
                 to="/register"
                 className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-xl transition"
@@ -84,31 +79,36 @@ function Navbar() {
 <div className="ml-10" >
 <h1 className="text-xl text-gray-200 font-bold">Welcome {user.name || null}👋</h1>
       </div>
-      <Link
+          <Link
             to="/"
             className="font-semibold  text-xl text-gray-200 hover:text-blue-500 transition hover:underline"
           >
             Home
           </Link>
 
-          <Link
-            to="/about"
-            className="font-semibold text-xl text-gray-200 hover:text-blue-500 transition hover:underline"
-          >
-            About
-          </Link>
+         
               
             </>
           )}
 
           {/* ADMIN */}
           {user && user.role === "admin" && (
+            <>
+            <h1 className="text-xl text-gray-200 font-bold">Welcome {user.name}👋</h1>
             <Link
-              to="/dashboard"
-              className=" text-xl text-blue-400 hover:text-blue-500 font-medium"
+            to="/"
+            className="font-semibold  text-xl text-gray-200 hover:text-blue-500 transition hover:underline"
+          >
+            Home
+          </Link>
+            
+            <Link
+              to="/admin"
+              className=" text-xl text-gray-200 hover:text-blue-500 font-medium"
             >
               Dashboard
             </Link>
+            </>
           )}
 
           {/* PROFILE */}
@@ -134,7 +134,6 @@ function Navbar() {
         <div className="md:hidden px-4 pb-4 flex flex-col gap-4 bg-white shadow-lg">
 
           <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
 
           {!user && (
             <>
@@ -152,7 +151,10 @@ function Navbar() {
           )}
 
           {user && user.role === "admin" && (
-            <Link to="/dashboard">Dashboard</Link>
+            <>
+            <Link to="/">Home</Link>
+            <Link to="/admin">Dashboard</Link>
+            </>
           )}
 
           {user && (
@@ -170,5 +172,4 @@ function Navbar() {
 }
 
 export default Navbar;
-
 

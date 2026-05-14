@@ -76,12 +76,13 @@ const eventData = {
         <>
         <section>
 
-            <div>
-                <h2 className='text-2xl text-center '>Create Event</h2>
+            <div className='bg-sky-800'>
+                <h2 className=' text-white text-3xl text-center '>Create Event</h2>
 
             </div>
 
             <form>
+{/*/////////////////////////////////////title input///////////*/}
 
                 <div className='flex-col m-4 flex'>
 
@@ -90,7 +91,7 @@ const eventData = {
                     <input 
                     placeholder='Whats the event called?'
                     required
-                    className='border-2 text-sm py-3 border-zinc-400 rounded-xl'
+                    className='border-2 text-sm py-3 focus:bg-blue-50 border-zinc-400 rounded-xl'
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}
                     type='text'
@@ -98,12 +99,13 @@ const eventData = {
                 </div>
 
                 <div className='flex-col m-4 flex'>
-{/*Event Category Selection */}
+
+{/*/////////////////////Event Category Selection/////////////////// */}
                     <label>Category</label>
                     <select
                     required
                     defaultValue=""
-                    className='border-2 border-zinc-400 rounded-xl p-2'
+                    className='border-2  border-zinc-400 rounded-xl p-2'
                     onChange={(e) => setCategory(e.target.value)}
                     value={category}
                     >
@@ -117,6 +119,7 @@ const eventData = {
 
 
                 </div>
+{/*/////////////////////////////////////description input///////////*/}
 
                 <div className='flex m-4 flex-col'>
                     <label>Description</label>
@@ -124,13 +127,15 @@ const eventData = {
                     <textarea 
                     placeholder='Tell people what to expect....'
                     required
-                    className='border-2 text-sm py-3 border-zinc-400 rounded-xl'
+                    className='border-2 focus:bg-blue-50 text-sm py-3 border-zinc-400 rounded-xl'
                     onChange={(e) => setDescription(e.target.value)}
                     value={description}
                     type='text'
                     ></textarea>
 
                 </div>
+{/*/////////////////////////////////////date input///////////*/}
+
 
                 <div className='gap-6 flex m-4 flex-row'>
                     <div className='flex flex-col'>
@@ -141,7 +146,7 @@ const eventData = {
 
                         <input
                         required
-                        className='border-2 py-3 rounded-xl border-zinc-400'
+                        className='border focus:bg-blue-50 -2 py-3 rounded-xl border-zinc-400'
                         type='date'
                         onChange={(e) => setDate(e.target.value)}
                         value={date}
@@ -152,6 +157,7 @@ const eventData = {
 
                     </div>
 
+{/*/////////////////////////////////////time input///////////*/}
                     <div className='flex-col flex'>
 
                          <label>Time</label>
@@ -159,7 +165,7 @@ const eventData = {
                         <div>
 
                         <input 
-                        className=' py-3 border-2 rounded-xl border-zinc-400'
+                        className=' py-3  focus:bg-blue-50 border-2 rounded-xl border-zinc-400'
                         type='time'
                         onChange={(e) => setTime(e.target.value)}
                         value={time}
@@ -175,10 +181,11 @@ const eventData = {
 
                 </div>
 
+{/*/////////////////////////////////////location input///////////////////////////////*/}
                 <div className='flex m-4 flex-col'>
                     <label>Location</label>
 
-                    <input className='rounded-xl py-3 border-2 border-zinc-400' 
+                    <input className='focus:bg-blue-50 rounded-xl py-3 border-2 border-zinc-400' 
                     onChange={(e) => setLocation(e.target.value)}
                     value={location}
                     type='text'
@@ -225,14 +232,14 @@ const eventData = {
                 )}
                 </div>
 
-
+{/*///////////////////////////attendees input/////////////*/}
 
                 <div className='flex m-4 flex-col'>
 
                     <label>Max Attendees(Optional)</label>
                     <input 
                     placeholder='Leave blank for unlimited'
-                    className='rounded-xl py-3 text-sm border-2 border-zinc-400'
+                    className='rounded-xl focus:bg-blue-50 py-3 text-sm border-2 border-zinc-400'
                     type='number'     
                     onChange={(e) => setMaxAttendees(e.target.value)}
                     value={maxAttendees}
@@ -240,6 +247,8 @@ const eventData = {
 
 
                 </div>
+
+                {/*////////////////////button submission///////////////*/}
 
                 <div className='flex justify-center mt-2'>
                     <button className='bg-sky-600 hover:bg-sky-800 text-white py-3 px-6 rounded-xl font-medium text-sm'
