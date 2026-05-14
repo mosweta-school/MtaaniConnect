@@ -21,7 +21,7 @@ L.Icon.Default.mergeOptions({
 const Map = ({ userLocation, events = [] }) => {
   if (!userLocation) {
     return (
-      <div className="flex h-[500px] items-center justify-center rounded-2xl bg-gray-100">
+      <div className="flex h-500px items-center justify-center rounded-2xl bg-gray-100">
         Loading map...
       </div>
     );
@@ -42,7 +42,7 @@ const redIcon = new L.Icon({
 
 
   return (
-    <div className="h-[500px] w-full overflow-hidden rounded-2xl shadow-lg">
+    <div className="h-500px w-full overflow-hidden rounded-2xl shadow-lg">
       <MapContainer
         center={[userLocation.lat, userLocation.lng]}
         className="h-full w-full"

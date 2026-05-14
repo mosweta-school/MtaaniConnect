@@ -42,7 +42,7 @@ export default function ProfileDropdown() {
   }, []);
 
   return (
-    <div ref={dropdownRef} className={`relative inline-block text-left w-10 h-10 rounded-full  items-center justify-center text-white font-bold ${getAvatarColor(firstLetter) }z-[9999]`} >
+    <div ref={dropdownRef} className={`relative inline-block text-left w-10 h-10 rounded-full  items-center justify-center text-white font-bold ${getAvatarColor(firstLetter) }z-9999`} >
       {/* Profile Button (User Initial) */}
       <button
       
