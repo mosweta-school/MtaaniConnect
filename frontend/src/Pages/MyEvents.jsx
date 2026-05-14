@@ -3,23 +3,23 @@ import { Link } from "react-router-dom";
 
 
 function MyEvents() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [items, setItems] = useState([]);
+const [searchItem, setSearchItem] = useState('');
 
-  const handleSearch = async () => {
-    try {
-      const response = await fetch(`http://localhost:8000/events?search=${searchTerm}`);
-      const data = await response.json();
-      setItems(data);
-    } catch (error) {
-      console.error('Error fetching search results:', error);
-    }
+  const handleSearch = () => {
+    // Implement search functionality here
+    console.log('Searching for:', searchItem);
+    await fetch(`http://localhost:8000/events?search=${searchItem}`)
+      .then(response => response.json())
+      .then(data => {
+        // Handle the search results here
+        console.log('Search results:', data);
+      })
+      .catch(error => {
+        console.error('Error fetching search results:', error);
+      }); 
 
-    const filteredItems = items.filter(item =>
-      item.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setItems(filteredItems);
-  };
+  }
+
 
   return (
     <>
@@ -59,8 +59,8 @@ function MyEvents() {
         <input
         placeholder="Search your events"
         className="rounded-xl bg-zinc-300 border-2 m-3 border-gray-200"
-        onChange={(e) => setSearchTerm(e.target.value)}
-        value={searchTerm}
+        value={searchItem}
+        onChange={(e) => setSearchItem(e.target.value)}
         ></input>
 
         <button className="rounded-2xl bg-blue-400 m-2 " onClick={handleSearch}>
