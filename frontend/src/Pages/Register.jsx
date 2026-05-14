@@ -53,8 +53,7 @@ function Register() {
     <section className="mt-8 items-center">
     
       <div className="place-items-center">
-
-                <Link to={"/"}className="flex" >
+                <Link to={"/"} className="flex" >
                 <img
                     src={Mtaani}
                     alt="MtaaniConnect"
