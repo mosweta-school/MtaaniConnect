@@ -2,13 +2,16 @@
 import NearbyEvents from "../Components/NearbyEvents";
 import Mtaani from "../assets/Mtaan6.PNG";
 import community from "../assets/community.jpg";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import API from "../Services/api";
+import { AuthContext } from "../context/authContext";
+
 
 function Home() {
     const [loading,setLoading] = useState(true)
     const [error,setError] = useState("")
     const [events, setEvents] = useState([]);
+      const { user} = useContext(AuthContext);
 
 
       useEffect(() => {
@@ -52,7 +55,10 @@ function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
 
-      {/* HERO SECTION */}
+                  {/* NOT LOGGED IN */}
+          {!user && (
+            <>
+{/* HERO SECTION */}
       <section className="max-w-7xl mx-auto px-6 py-12">
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -104,8 +110,15 @@ function Home() {
 
         </div>
       </section>
+            </>
+          )}
 
-      {/* NEARBY EVENTS */}
+
+      
+
+                {user && user.role === "user" && (
+                    <>
+                    
       <section className="max-w-7xl mx-auto px-6 py-12">
 
         <div className="mb-8">
@@ -166,8 +179,7 @@ function Home() {
         </div>
 
       </section>
-
-      {/* EVENTS SECTION */}
+                    
       <section className="max-w-7xl mx-auto px-6 py-12">
 
         <div className="flex justify-between items-center mb-8">
@@ -254,6 +266,13 @@ function Home() {
 
 
       </section>
+      </>
+            
+          )}
+
+      
+
+      
 
     </div>
   );

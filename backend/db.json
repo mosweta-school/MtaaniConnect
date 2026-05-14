@@ -12,13 +12,20 @@
       "name": "jane",
       "email": "jane@gmail.com",
       "password": "$2b$10$D42dMYo8ZtDtjpAha8g9tuWCcvXk9N/pGvyFAA/UIHVvoGC4iuib.",
-      "role": "user"
+      "role": "admin"
     },
     {
       "id": "OxzfeAOeHLI",
       "name": "Obama",
       "email": "obama360@gmail.com",
       "password": "$2b$10$y4pDOg1lrYjulgjh6czN.uWeXU2ihuPkHTsEMLuZ85GcqevgfkuLK",
+      "role": "user"
+    },
+    {
+      "id": "OGpHLOuuUDs",
+      "name": "deo",
+      "email": "shinikizua@gmail.com",
+      "password": "$2b$10$7eftfVvdKJ2RkUnthwwpFOmKcxwNXRW.BHj5vT4HYicIXwWbSQB1u",
       "role": "user"
     }
   ],
@@ -60,6 +67,20 @@
       "longitude": 36.784664806731165,
       "maxAttendees": "10",
       "id": "23pYKl7nAUM"
+    },
+    {
+      "title": "sports tournament",
+      "category": "sports",
+      "description": "An annual event where football enthusiasts meet to watch entertaining local teams play.",
+      "date": "2026-05-15",
+      "time": "09:30",
+      "locationName": "Pipeline Stadium",
+      "createdBy": "XCJ7rEmLsA4",
+      "organizerName": "deo",
+      "latitude": -1.3188329925609479,
+      "longitude": 36.8893078782159,
+      "maxAttendees": "179",
+      "id": "o8g-aLOWGeQ"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
