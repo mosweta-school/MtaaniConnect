@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-import API from "../../../src/services/api";
+import API from "../Services/api";
 
 import DashboardCards from "../Components/DashboardCards";
 
 import Charts from "../Components/Charts";
 
-const AdminDashboard = () => {
+const AdminDashboard2 = () => {
   const [stats, setStats] = useState(null);
 
   useEffect(() => {
@@ -45,4 +45,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default AdminDashboard2;

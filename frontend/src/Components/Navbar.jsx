@@ -79,7 +79,7 @@ function Navbar() {
 <div className="ml-10" >
 <h1 className="text-xl text-gray-200 font-bold">Welcome {user.name || null}👋</h1>
       </div>
-      <Link
+          <Link
             to="/"
             className="font-semibold  text-xl text-gray-200 hover:text-blue-500 transition hover:underline"
           >
@@ -134,7 +134,6 @@ function Navbar() {
         <div className="md:hidden px-4 pb-4 flex flex-col gap-4 bg-white shadow-lg">
 
           <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
 
           {!user && (
             <>
@@ -152,7 +151,10 @@ function Navbar() {
           )}
 
           {user && user.role === "admin" && (
-            <Link to="/dashboard">Dashboard</Link>
+            <>
+            <Link to="/">Home</Link>
+            <Link to="/admin">Dashboard</Link>
+            </>
           )}
 
           {user && (
@@ -170,5 +172,4 @@ function Navbar() {
 }
 
 export default Navbar;
-
 

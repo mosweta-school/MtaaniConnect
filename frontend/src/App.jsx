@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import AdminDashboard from "./Pages/AdminDashboard"
+import AdminDashboard2 from "./Pages/AdminDashboard2"
 import Home from "./Pages/Home"
 import Login from "./Pages/Login"
 import Register from "./Pages/Register"
 import CreateEvent  from "./Pages/CreateEvent"
 import MyEvents from "./Pages/MyEvents"
-import About from "./Pages/About"
 
 import Layout from "./Components/Layout"
 import { AuthProvider } from "./context/AuthContext";
@@ -21,7 +21,6 @@ function App() {
       <Routes>
 
         <Route path="/" element={<Layout> <Home /> </Layout>} />
-        <Route path="/about" element={<Layout> <About /> </Layout>} />
         <Route path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Register /> } />
         
