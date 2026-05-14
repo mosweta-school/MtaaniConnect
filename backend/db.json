@@ -32,6 +32,34 @@
       "location": "Lavington",
       "maxAttendees": "50",
       "id": "7xBRRJKMA9o"
+    },
+    {
+      "title": "Mtaani Connect Open Day",
+      "category": "tech",
+      "description": "This is a nice event where people interested in learning more about mtaani connect meet.",
+      "date": "2026-05-25",
+      "time": "02:40",
+      "locationName": "Nyayo Estate Embakasi",
+      "createdBy": "XCJ7rEmLsA4",
+      "organizerName": "deo",
+      "latitude": -1.3057450470113228,
+      "longitude": 36.90386701261758,
+      "maxAttendees": "100",
+      "id": "eiSFWxE_6q4"
+    },
+    {
+      "title": "Nina's day out",
+      "category": "music",
+      "description": "sherehe bila hasira",
+      "date": "2026-05-15",
+      "time": "09:00",
+      "locationName": "Quiver Kilimani",
+      "createdBy": "XCJ7rEmLsA4",
+      "organizerName": "deo",
+      "latitude": -1.3000372472783195,
+      "longitude": 36.784664806731165,
+      "maxAttendees": "10",
+      "id": "23pYKl7nAUM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
