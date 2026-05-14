@@ -12,7 +12,7 @@
       "name": "jane",
       "email": "jane@gmail.com",
       "password": "$2b$10$D42dMYo8ZtDtjpAha8g9tuWCcvXk9N/pGvyFAA/UIHVvoGC4iuib.",
-      "role": "admin"
+      "role": "user"
     },
     {
       "id": "OxzfeAOeHLI",
@@ -27,19 +27,30 @@
       "email": "shinikizua@gmail.com",
       "password": "$2b$10$7eftfVvdKJ2RkUnthwwpFOmKcxwNXRW.BHj5vT4HYicIXwWbSQB1u",
       "role": "admin"
+    },
+    {
+      "id": "gfLzAqCTkog",
+      "name": "David",
+      "email": "davidkm.official@gmail.com",
+      "password": "$2b$10$3RXP2xG/W9NBTHP02hM6cOKwy.dSWSx1H3D.pgaBYwPbqZJ9lZcsm",
+      "role": "user"
+    },
+    {
+      "id": "kOU-miQ9S2Y",
+      "name": "David",
+      "email": "davidkm@gmail.com",
+      "password": "$2b$10$wNGxt6VFOahsnTLT4NZo8Owg.ggIgBVvfddslCr/HCgNy02MR1TIe",
+      "role": "user"
+    },
+    {
+      "id": "VqTPr5awY7c",
+      "name": "dave",
+      "email": "dave@gmail.com",
+      "password": "$2b$10$s0VSoTpdw0pzThvHTMcr8eZy8S/RV08kcbwTbF6sYW4GYxJK8tt9u",
+      "role": "user"
     }
   ],
   "events": [
-    {
-      "title": "Nairobi Tech Fair",
-      "category": "tech",
-      "description": "All about technology",
-      "date": "2026-05-13",
-      "time": "15:00",
-      "location": "Lavington",
-      "maxAttendees": "50",
-      "id": "7xBRRJKMA9o"
-    },
     {
       "title": "Mtaani Connect Open Day",
       "category": "tech",
@@ -69,18 +80,32 @@
       "id": "23pYKl7nAUM"
     },
     {
-      "title": "sports tournament",
+      "title": "Sports event",
       "category": "sports",
-      "description": "An annual event where football enthusiasts meet to watch entertaining local teams play.",
-      "date": "2026-05-15",
-      "time": "09:30",
-      "locationName": "Pipeline Stadium",
-      "createdBy": "XCJ7rEmLsA4",
-      "organizerName": "deo",
-      "latitude": -1.3188329925609479,
-      "longitude": 36.8893078782159,
-      "maxAttendees": "179",
-      "id": "o8g-aLOWGeQ"
+      "description": "Sports",
+      "date": "2026-05-14",
+      "time": "22:00",
+      "locationName": "Moi Avenue Primary School",
+      "createdBy": "VqTPr5awY7c",
+      "organizerName": "dave",
+      "latitude": -1.2799563207953768,
+      "longitude": 36.820700168609626,
+      "maxAttendees": "46",
+      "id": "N3fJ3QRMKtU"
+    },
+    {
+      "title": "Random",
+      "category": "tech",
+      "description": "Purposed Intention",
+      "date": "2026-05-14",
+      "time": "19:53",
+      "locationName": "Museum",
+      "createdBy": "VqTPr5awY7c",
+      "organizerName": "dave",
+      "latitude": -1.273960390886424,
+      "longitude": 36.814992427825935,
+      "maxAttendees": "500",
+      "id": "Tnq8t_5Nhbo"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

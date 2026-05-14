@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import EventList from "../Components/EventList";
+import { Link } from "react-router-dom";
 import API from "../Services/api";
 
 const fallbackEvents = [
@@ -10,6 +11,7 @@ const fallbackEvents = [
 
 
 function MyEvents() {
+
   const [myEvents, setMyEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -35,7 +37,6 @@ function MyEvents() {
   }, []);
 
   const visibleEvents = myEvents.length > 0 ? myEvents : fallbackEvents;
-
   return (
     <>
     <section>
@@ -44,10 +45,11 @@ function MyEvents() {
 
         <h2 className="text-4xl font-extrabold text-white">My Events</h2>
 
-        <button className="text-xl hover:bg-blue-50 rounded-2xl bg-white">Create Event</button>
-
-        
-
+      <Link to={"/create-event"}>
+        <button className="text-xl hover:bg-blue-50 rounded-2xl bg-white" >
+          Create Event
+        </button>
+      </Link>
       </div>
 
       {/*////Total Number Of Events///*/}
@@ -74,19 +76,6 @@ function MyEvents() {
       {/*///////////////////My Event List/////////////////*/}
 
       <EventList events={myEvents} />
-
-
-
-
-
-    
-
-
-
-
-
-
-
 
     </section>
     
