@@ -35,7 +35,7 @@ function EventCard(){
 
                     <button className= "bg-zinc-300 flex-2 rounded-xl m-1 border-zinc-400">Edit</button>
 
-                    <button className="bg-blue-400 rounded-xl m-1 py-2 text-white">Delete</button>
+                    <button className="bg-sky-800 hover:bg-sky-600 rounded-xl m-1 py-2 text-white">Delete</button>
 
 
                 </div>
