@@ -140,13 +140,13 @@ function Home() {
       {/* SEARCH + FILTER */}
       <section className="max-w-7xl mx-auto px-6 py-8">
 
-        {/* SEARCH */}
+        {/*//////////// SEARCH ////////////*/}
         <div className="flex flex-col md:flex-row gap-4 mb-8">
 
           <input
             type="search"
             placeholder="Search events..."
-            className="flex-1 border-2 border-gray-300 rounded-2xl px-5 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 border-2 focus:bg-blue-50 border-gray-300 rounded-2xl px-5 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
           <button className="bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 rounded-2xl font-semibold">
@@ -155,7 +155,7 @@ function Home() {
 
         </div>
 
-        {/* CATEGORY FILTERS */}
+        {/* ////////CATEGORY FILTERS //////////////////*/}
         <div className="flex flex-wrap gap-3">
 
           {[
@@ -188,6 +188,7 @@ function Home() {
             Featured Events
           </h2>
 
+{/*//////////////////////////////view all button////////////////////////*/}
           <button className="text-blue-600 font-medium hover:underline">
             View All
           </button>
@@ -213,7 +214,6 @@ function Home() {
         className="bg-white rounded-3xl shadow-md overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition duration-300"
       >
 
-        <div className="h-48 bg-gray-200"></div>
 
         <div className="p-6">
 
@@ -247,7 +247,7 @@ function Home() {
               {event.date}
             </span>
 
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm">
+            <button className="bg-sky-800 hover:bg-sky-600 text-white px-4 py-2 rounded-xl text-sm">
               View Event
             </button>
 
