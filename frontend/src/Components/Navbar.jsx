@@ -33,7 +33,7 @@ function Navbar() {
   const firstLetter = user?.name?.charAt(0).toUpperCase();
 
   return (
-    <nav className="bg-sky-800 justify-between flex py-3 flex-row shadow-md  sticky top-0 z-50">
+    <nav className="bg-sky-800 justify-between flex py-3 flex-row shadow-md   ">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
 {/*////////////////////////////////////////////Navigation Panel////////////////////////////////////////////////////////*/}
 
