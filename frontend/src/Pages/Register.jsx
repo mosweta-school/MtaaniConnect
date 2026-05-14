@@ -54,9 +54,8 @@ function Register() {
     
       <div className="place-items-center">
 
-                <Link className="flex" >
+                <Link to={"/"}className="flex" >
                 <img
-                  onClick={navigate("/")}
                     src={Mtaani}
                     alt="MtaaniConnect"
                     className="w-44 md:w-56 object-contain place-items-center"

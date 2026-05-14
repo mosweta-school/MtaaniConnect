@@ -3,6 +3,24 @@ import { Link } from "react-router-dom";
 
 
 function MyEvents() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [items, setItems] = useState([]);
+
+  const handleSearch = async () => {
+    try {
+      const response = await fetch(`http://localhost:8000/events?search=${searchTerm}`);
+      const data = await response.json();
+      setItems(data);
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+    }
+
+    const filteredItems = items.filter(item =>
+      item.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setItems(filteredItems);
+  };
+
   return (
     <>
     <section>
@@ -40,9 +58,14 @@ function MyEvents() {
 
         <input
         placeholder="Search your events"
-        className="rounded-xl bg-zinc-300 border-2 m-3 border-gray-200"></input>
+        className="rounded-xl bg-zinc-300 border-2 m-3 border-gray-200"
+        onChange={(e) => setSearchTerm(e.target.value)}
+        value={searchTerm}
+        ></input>
 
-        <button className="rounded-2xl bg-blue-400 m-2 ">Search</button>
+        <button className="rounded-2xl bg-blue-400 m-2 " onClick={handleSearch}>
+          Search
+        </button>
 
 
       </div>
@@ -55,6 +78,7 @@ function MyEvents() {
                 <h2 className="text-sm font-bold text-blue-400">MUSIC</h2>
                 <h2 className="font-bold text-2xl">Deos Day</h2>
                 <p className="text-gray-600">Sherehe Bila Hasira</p>
+
 
             </div>
 

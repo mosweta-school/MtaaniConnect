@@ -20,19 +20,16 @@
       "email": "obama360@gmail.com",
       "password": "$2b$10$y4pDOg1lrYjulgjh6czN.uWeXU2ihuPkHTsEMLuZ85GcqevgfkuLK",
       "role": "user"
+    },
+    {
+      "id": "qvF3NRh7OS0",
+      "name": "David Kamau",
+      "email": "davidkm.official@gmail.com",
+      "password": "$2b$10$QBerUdYtqIOLJwPQeZUsN.ySA6YSP9sg9n2E0tbPxcETkShDFWZOu",
+      "role": "user"
     }
   ],
   "events": [
-    {
-      "title": "Nairobi Tech Fair",
-      "category": "tech",
-      "description": "All about technology",
-      "date": "2026-05-13",
-      "time": "15:00",
-      "location": "Lavington",
-      "maxAttendees": "50",
-      "id": "7xBRRJKMA9o"
-    },
     {
       "title": "Mtaani Connect Open Day",
       "category": "tech",
