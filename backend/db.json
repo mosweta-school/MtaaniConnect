@@ -27,6 +27,27 @@
       "email": "shinikizua@gmail.com",
       "password": "$2b$10$7eftfVvdKJ2RkUnthwwpFOmKcxwNXRW.BHj5vT4HYicIXwWbSQB1u",
       "role": "admin"
+    },
+    {
+      "id": "gfLzAqCTkog",
+      "name": "David",
+      "email": "davidkm.official@gmail.com",
+      "password": "$2b$10$3RXP2xG/W9NBTHP02hM6cOKwy.dSWSx1H3D.pgaBYwPbqZJ9lZcsm",
+      "role": "user"
+    },
+    {
+      "id": "kOU-miQ9S2Y",
+      "name": "David",
+      "email": "davidkm@gmail.com",
+      "password": "$2b$10$wNGxt6VFOahsnTLT4NZo8Owg.ggIgBVvfddslCr/HCgNy02MR1TIe",
+      "role": "user"
+    },
+    {
+      "id": "VqTPr5awY7c",
+      "name": "dave",
+      "email": "dave@gmail.com",
+      "password": "$2b$10$s0VSoTpdw0pzThvHTMcr8eZy8S/RV08kcbwTbF6sYW4GYxJK8tt9u",
+      "role": "user"
     }
   ],
   "events": [
@@ -57,6 +78,34 @@
       "longitude": 36.784664806731165,
       "maxAttendees": "10",
       "id": "23pYKl7nAUM"
+    },
+    {
+      "title": "Sports event",
+      "category": "sports",
+      "description": "Sports",
+      "date": "2026-05-14",
+      "time": "22:00",
+      "locationName": "Moi Avenue Primary School",
+      "createdBy": "VqTPr5awY7c",
+      "organizerName": "dave",
+      "latitude": -1.2799563207953768,
+      "longitude": 36.820700168609626,
+      "maxAttendees": "46",
+      "id": "N3fJ3QRMKtU"
+    },
+    {
+      "title": "Random",
+      "category": "tech",
+      "description": "Random",
+      "date": "2026-05-14",
+      "time": "20:52",
+      "locationName": "Museum",
+      "createdBy": "VqTPr5awY7c",
+      "organizerName": "dave",
+      "latitude": -1.273960390886424,
+      "longitude": 36.814992427825935,
+      "maxAttendees": "500",
+      "id": "Tnq8t_5Nhbo"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

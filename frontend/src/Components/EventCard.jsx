@@ -1,4 +1,15 @@
 function EventCard({ event }){
+    function handleEdit(){
+        // Implement edit functionality here
+        console.log("Edit event:", event.id);
+        
+    }
+    
+    function handleDelete(){
+        // Implement delete functionality here
+        console.log("Delete event:", event.id);
+    }
+
     return(
 
     <section className="shadow-gray-300 border-2 border-gray-200 rounded-3xl m-6">
@@ -35,9 +46,13 @@ function EventCard({ event }){
 
                 <div className="rounded-2xl flex  flex-row m-3 bg-gray-200 justify-end">
 
-                    <button className= "bg-zinc-300 flex-2 rounded-xl m-1 hover:bg-gray-400 border-zinc-400">Edit</button>
+                    <button className= "bg-zinc-300 flex-2 rounded-xl m-1 hover:bg-gray-400 border-zinc-400"
+                    onClick={handleEdit}
+                    >Edit</button>
 
-                    <button className="bg-sky-800 hover:bg-sky-600 rounded-xl m-1 py-2 text-white">Delete</button>
+                    <button className="bg-sky-800 hover:bg-sky-600 rounded-xl m-1 py-2 text-white"
+                    onClick={handleDelete}
+                    >Delete</button>
 
 
                 </div>
