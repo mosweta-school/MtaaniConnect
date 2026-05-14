@@ -5,13 +5,17 @@ import community from "../assets/community.jpg";
 import { useEffect, useState, useContext } from "react";
 import API from "../Services/api";
 import { AuthContext } from "../context/authContext";
-
+import {Link} from "react-router-dom"
+import EventModal from "../Components/EventModal";
 
 function Home() {
     const [loading,setLoading] = useState(true)
     const [error,setError] = useState("")
     const [events, setEvents] = useState([]);
-      const { user} = useContext(AuthContext);
+    const [selectedCategory, setSelectedCategory] = useState("All")
+    const [searchTerm, setSearchTerm] = useState("")
+    const { user} = useContext(AuthContext);
+    const [selectedEvent, setSelectedEvent] = useState(null);
 
 
       useEffect(() => {
@@ -51,6 +55,28 @@ function Home() {
           </div>
         );
       }
+      const filteredEvents = events.filter((event) => {
+
+  // SEARCH FILTER
+  const matchesSearch =
+    event.title
+      ?.toLowerCase()
+      .includes(searchTerm.toLowerCase()) ||
+    event.description
+      ?.toLowerCase()
+      .includes(searchTerm.toLowerCase()) ||
+    event.location
+      ?.toLowerCase()
+      .includes(searchTerm.toLowerCase());
+
+  // CATEGORY FILTER
+  const matchesCategory =
+    selectedCategory === "All" ||
+    event.category?.toLowerCase() ===
+      selectedCategory.toLowerCase();
+
+  return matchesSearch && matchesCategory;
+});
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -89,12 +115,13 @@ function Home() {
             <div className="flex flex-wrap gap-4">
 
               <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl font-semibold shadow-md transition">
+                <Link to={"/login"}>
                 Explore Events
+                </Link>
+                
               </button>
 
-              <button className="border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-2xl font-semibold transition">
-                Learn More
-              </button>
+              
 
             </div>
           </div>
@@ -116,7 +143,7 @@ function Home() {
 
       
 
-                {user && user.role === "user" && (
+                {user && (
                     <>
                     
       <section className="max-w-7xl mx-auto px-6 py-12">
@@ -146,8 +173,10 @@ function Home() {
           <input
             type="search"
             placeholder="Search events..."
-            className="flex-1 border-2 focus:bg-blue-50 border-gray-300 rounded-2xl px-5 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="flex-1 border-2 border-gray-300 rounded-2xl px-5 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
 
           <button className="bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 rounded-2xl font-semibold">
             Search
@@ -155,28 +184,36 @@ function Home() {
 
         </div>
 
-        {/* ////////CATEGORY FILTERS //////////////////*/}
-        <div className="flex flex-wrap gap-3">
+        {/* CATEGORY FILTERS */}
+                <div className="flex flex-wrap gap-3">
 
-          {[
-            "All",
-            "Tech",
-            "Sports",
-            "Music",
-            "Fashion",
-            "Art",
-          ].map((category) => (
+                {[
+                    "All",
+                    "Tech",
+                    "Sports",
+                    "Music",
+                    "Fashion",
+                    "Art",
+                ].map((category) => (
 
-            <button
-              key={category}
-              className="bg-sky-600 hover:bg-sky-800 text-white px-5 py-2 rounded-2xl transition"
-            >
-              {category}
-            </button>
+                    <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`px-5 py-2 rounded-2xl transition text-white
 
-          ))}
+                        ${
+                        selectedCategory === category
+                            ? "bg-sky-800"
+                            : "bg-sky-600 hover:bg-sky-700"
+                        }
+                    `}
+                    >
+                    {category}
+                    </button>
 
-        </div>
+                ))}
+
+                </div>
 
       </section>
                     
@@ -202,12 +239,12 @@ function Home() {
   {events.length === 0 ? (
 
     <p className="text-gray-500">
-      No events available
+      No matching events found
     </p>
 
   ) : (
 
-    events.map((event) => (
+    filteredEvents.map((event) => (
 
       <div
         key={event.id}
@@ -247,8 +284,11 @@ function Home() {
               {event.date}
             </span>
 
-            <button className="bg-sky-800 hover:bg-sky-600 text-white px-4 py-2 rounded-xl text-sm">
-              View Event
+            <button
+            onClick={() => setSelectedEvent(event)}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm"
+            >
+            View Event
             </button>
 
           </div>
@@ -266,15 +306,21 @@ function Home() {
 
 
       </section>
-      </>
+        </>
             
           )}
 
-      
-
-      
+      {/* EVENT MODAL */}
+      {selectedEvent && (
+        <EventModal
+          event={selectedEvent}
+          onClose={() => setSelectedEvent(null)}
+          user={user}
+        />
+      )}
 
     </div>
+    
   );
 }
 
