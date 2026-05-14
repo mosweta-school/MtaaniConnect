@@ -27,6 +27,20 @@ const Map = ({ userLocation, events = [] }) => {
     );
   }
 
+const redIcon = new L.Icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+
+  shadowUrl:
+    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+
   return (
     <div className="h-[500px] w-full overflow-hidden rounded-2xl shadow-lg">
       <MapContainer
@@ -45,10 +59,14 @@ const Map = ({ userLocation, events = [] }) => {
         </Marker>
 
         {events.map((event) => (
-          <Marker
-            key={event._id || `${event.latitude}-${event.longitude}`}
-            position={[event.latitude, event.longitude]}
-          >
+          
+              <Marker
+                key={event.id}
+                position={[event.latitude, event.longitude]}
+                icon={redIcon}
+              >
+
+
             <Popup>
               <div>
                 <h2 className="font-bold">{event.title}</h2>

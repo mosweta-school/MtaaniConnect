@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { loginUser } from "../Services/authService";
 import { AuthContext } from "../context/authContext";
 import toast,{Toaster} from "react-hot-toast";
+import Mtaani from "../assets/Mtaan6.PNG";
 
 
 function Login(){
@@ -49,7 +50,14 @@ function Login(){
         <section className='mt-8 items-center '>
                 <div className='place-items-center'>
 
-                    <h1 className='font-extrabold text-3xl'>MtaaniConnect</h1>
+                    <Link to={"/"} className="flex" >
+                                    <img
+                                      
+                                        src={Mtaani}
+                                        alt="MtaaniConnect"
+                                        className="w-44 md:w-56 object-contain place-items-center"
+                                      />
+                                    </Link>
                     <h2 className='text-blue-300 '>Discover events near you</h2>
 
                 </div>

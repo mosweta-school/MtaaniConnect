@@ -1,17 +1,25 @@
 import { useState } from 'react';
+import {
+  MapContainer,
+  TileLayer,
+} from "react-leaflet";
+
+import LocationPicker from "../Components/LocationPicker";
 
 function CreateEvent(){
+    
     const[title, setTitle] = useState('');
     const[category, setCategory] = useState('');
     const[description, setDescription] = useState('');
     const[date, setDate] = useState('');
     const[time, setTime] = useState('');
     const[location, setLocation] = useState('');
+    const [selectedPosition, setSelectedPosition] = useState(null);
     const[maxAttendees, setMaxAttendees] = useState(0);
-
+    const loggedInUser = JSON.parse(localStorage.getItem("user"));
     const handleSubmit = async(e)=>{
     // Validate that all required fields are filled out
-    if(!title || !category || !description || !date || !time || !location){
+    if(!title || !category || !description || !date || !time || !location || !selectedPosition){
         alert('Please fill out all required fields');
         return;
     }
@@ -26,20 +34,23 @@ function CreateEvent(){
     e.preventDefault();
 
     // Stores the table data in an object to be sent to the backend
-    const eventData = {
-        title,
-        category,
-        description,
-        date,
-        time,
-        location,
-        maxAttendees
-    }
+const eventData = { 
+    title, 
+    category, 
+    description, 
+    date, 
+    time, 
+    locationName: location,
+    createdBy: loggedInUser?.id, organizerName: loggedInUser?.name, 
+    latitude: selectedPosition?.lat, 
+    longitude: selectedPosition?.lng, 
+    maxAttendees, 
+};
     // Logs the event data to the console for debugging purposes
     console.log(eventData);
 
     // Sends the event data to the backend to be stored in the database
-    await fetch('http://localhost:3000/events', {
+    await fetch('http://localhost:8000/events', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -174,6 +185,47 @@ function CreateEvent(){
                     ></input>
 
                 </div>
+                
+                <div className="m-4">
+
+                <label className="mb-2 block">
+                    Select Event Location on Map
+                </label>
+
+                <div className="h-[300px] overflow-hidden rounded-2xl">
+
+                    <MapContainer
+                    center={[-1.286389, 36.817223]}
+                    zoom={13}
+                    scrollWheelZoom
+                    className="h-full w-full"
+                    >
+
+                    <TileLayer
+                        attribution="&copy; OpenStreetMap contributors"
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+
+                    <LocationPicker
+                        selectedPosition={selectedPosition}
+                        setSelectedPosition={setSelectedPosition}
+                    />
+
+                    </MapContainer>
+                </div>
+
+                {selectedPosition && (
+                    <p className="mt-2 text-sm text-gray-600">
+                    Selected Coordinates:
+                    {" "}
+                    {selectedPosition.lat.toFixed(5)},
+                    {" "}
+                    {selectedPosition.lng.toFixed(5)}
+                    </p>
+                )}
+                </div>
+
+
 
                 <div className='flex m-4 flex-col'>
 
