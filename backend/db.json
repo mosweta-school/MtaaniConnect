@@ -12,34 +12,59 @@
       "name": "jane",
       "email": "jane@gmail.com",
       "password": "$2b$10$D42dMYo8ZtDtjpAha8g9tuWCcvXk9N/pGvyFAA/UIHVvoGC4iuib.",
-      "role": "admin"
+      "role": "user",
+      "isActive": "1"
     },
     {
       "id": "OxzfeAOeHLI",
       "name": "Obama",
       "email": "obama360@gmail.com",
       "password": "$2b$10$y4pDOg1lrYjulgjh6czN.uWeXU2ihuPkHTsEMLuZ85GcqevgfkuLK",
-      "role": "user"
+      "role": "user",
+      "isActive": "1"
     },
     {
       "id": "OGpHLOuuUDs",
       "name": "deo",
       "email": "shinikizua@gmail.com",
       "password": "$2b$10$7eftfVvdKJ2RkUnthwwpFOmKcxwNXRW.BHj5vT4HYicIXwWbSQB1u",
-      "role": "admin"
+      "role": "admin",
+      "isActive": "1"
+    },
+    {
+      "id": "gfLzAqCTkog",
+      "name": "David",
+      "email": "davidkm.official@gmail.com",
+      "password": "$2b$10$3RXP2xG/W9NBTHP02hM6cOKwy.dSWSx1H3D.pgaBYwPbqZJ9lZcsm",
+      "role": "user",
+      "isActive": "1"
+    },
+    {
+      "id": "kOU-miQ9S2Y",
+      "name": "David",
+      "email": "davidkm@gmail.com",
+      "password": "$2b$10$wNGxt6VFOahsnTLT4NZo8Owg.ggIgBVvfddslCr/HCgNy02MR1TIe",
+      "role": "user",
+      "isActive": "1"
+    },
+    {
+      "id": "VqTPr5awY7c",
+      "name": "dave",
+      "email": "dave@gmail.com",
+      "password": "$2b$10$s0VSoTpdw0pzThvHTMcr8eZy8S/RV08kcbwTbF6sYW4GYxJK8tt9u",
+      "role": "user",
+      "isActive": "1"
+    },
+    {
+      "id": "wu7wi4atBgg",
+      "name": "dv2",
+      "email": "dv2@gmail.com",
+      "password": "$2b$10$CkEuLDBdp5flP3JUd1JsL.ESC/Hv.CeRcE.avQn1vOqueDqN1AzRu",
+      "role": "admin",
+      "isActive": "1"
     }
   ],
   "events": [
-    {
-      "title": "Nairobi Tech Fair",
-      "category": "tech",
-      "description": "All about technology",
-      "date": "2026-05-13",
-      "time": "15:00",
-      "location": "Lavington",
-      "maxAttendees": "50",
-      "id": "7xBRRJKMA9o"
-    },
     {
       "title": "Mtaani Connect Open Day",
       "category": "tech",
@@ -69,18 +94,32 @@
       "id": "23pYKl7nAUM"
     },
     {
-      "title": "sports tournament",
+      "title": "Cheza tournament",
       "category": "sports",
-      "description": "An annual event where football enthusiasts meet to watch entertaining local teams play.",
+      "description": "Under 18 highschool football tournament",
+      "date": "2026-05-16",
+      "time": "10:29",
+      "locationName": "Sunshine Secondary School",
+      "createdBy": "wu7wi4atBgg",
+      "organizerName": "dv2",
+      "latitude": -1.3198305038395004,
+      "longitude": 36.80668830871583,
+      "maxAttendees": "1000",
+      "id": "8C1UcnyEJJg"
+    },
+    {
+      "title": "Random",
+      "category": "music",
+      "description": "Random",
       "date": "2026-05-15",
-      "time": "09:30",
-      "locationName": "Pipeline Stadium",
-      "createdBy": "XCJ7rEmLsA4",
+      "time": "10:44",
+      "locationName": "Random",
+      "createdBy": "OGpHLOuuUDs",
       "organizerName": "deo",
-      "latitude": -1.3188329925609479,
-      "longitude": 36.8893078782159,
-      "maxAttendees": "179",
-      "id": "o8g-aLOWGeQ"
+      "latitude": -1.274480610761434,
+      "longitude": 36.82909011840821,
+      "maxAttendees": "20",
+      "id": "cH_8OBgts1k"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

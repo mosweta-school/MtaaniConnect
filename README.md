@@ -3,11 +3,9 @@
 
 LocalConnect is a web-based platform that allows users to create, manage, and discover events happening within their immediate locality using GPS-based location detection.
 
-The system connects event organizers with nearby audiences and provides an admin dashboard for monitoring platform activity and usage analytics.
-
 ## 🚨 Problem Statement
 
-Event information is often scattered across different platforms, making it difficult for users to discover relevant events happening nearby. As a result, many local events suffer from low visibility and poor attendance.
+Event information is often scattered across different platforms, making it difficult for users to discover relevant events happening nearby. As a result, many local events suffer from low visibility and poor attendance.  
 
 Additionally, there is no centralized system that allows users to easily create, manage, and discover events based on their real-time location.
 
@@ -51,10 +49,9 @@ Users can see events happening near them and event organizers can easily publish
 - Search and filter events
 - Manage personal event listings
 #### 🛡️ Admin
-- View all users and events
-- Delete inappropriate content
-- Monitor system usage
-- View analytics dashboard
+- View all users and events  
+- Monitor system usage  
+- View analytics dashboard  
 
 ## 🏗️ System Architecture
 ```bash
@@ -62,7 +59,7 @@ Frontend (React)
         ↓
 REST API (Node.js + Express)
         ↓
-Database (PostgreSQL / MongoDB)
+Database (PostgreSQL / MongoDB/ Mock database db.json)
         ↓
 Geolocation Services (Browser API)
 ```
@@ -90,8 +87,19 @@ Geolocation Services (Browser API)
 localconnect/
 │
 ├── frontend/
-│   ├── src/
-│   └── components/
+│   └── src/
+│       ├── assets/
+│       ├── Components/
+│       ├── context/
+│       ├── Pages/
+│       ├── RouteProject/
+│       ├── Services/
+│       ├── utils/
+│       ├── App.css
+│       ├── App.jsx
+│       ├── index.css
+│       └── main.jsx
+│   
 │
 ├── backend/
 │   ├── controllers/
@@ -115,9 +123,6 @@ localconnect/
 - GET /api/admin/users
 - GET /api/admin/stats
 
-## Screenshots
-- will be added once the app is made
-
 ## 👥 User Stories
 ### As a User:
 - I want to create an event so others can attend
@@ -126,7 +131,6 @@ localconnect/
 - I want to manage my own events
 ### As an Admin:
 - I want to monitor users and events
-- I want to delete inappropriate content
 - I want to view system analytics
 ## 📊 Future Improvements
 - Event ticket booking system
@@ -223,10 +227,12 @@ Reviewer checks:
 - structure
 - naming conventions
 Scrum Master or teammate approves
+
 ✅ 10. Merge into development
 ```
 feature/* → development
 ```
+
 🚀 11. Final release
 
 When everything is complete:
