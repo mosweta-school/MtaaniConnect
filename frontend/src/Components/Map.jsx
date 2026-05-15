@@ -1,6 +1,7 @@
 import {
   MapContainer,
   Marker,
+  Marker,
   Popup,
   TileLayer,
 } from "react-leaflet";
