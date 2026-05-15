@@ -90,7 +90,7 @@ const NearbyEvents = () => {
         ) : (
           nearbyEvents.map((event) => (
             <div
-              key={event._id}
+              key={event.id}
               className="bg-white p-5 rounded-2xl shadow-md"
             >
               <h2 className="text-xl font-bold">

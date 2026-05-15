@@ -27,8 +27,9 @@ function EventCard({ event }){
         });
 
     }
+    
 
-    return
+    return(
 
     <section className="shadow-gray-300 border-2 border-gray-200 rounded-3xl m-6">
 
@@ -84,7 +85,7 @@ function EventCard({ event }){
 
 
 
-
+)
 
     
 
