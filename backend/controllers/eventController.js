@@ -124,7 +124,9 @@ export const getMyEvents = async (req, res) => {
     }
 
     const response = await axios.get(EVENTS_API);
-
+ 
+    // ==============================================================================================================================
+    // Filtering Events by userID
     const myEvents = response.data.filter(
       (event) =>
         String(event.createdBy) === String(userId)
