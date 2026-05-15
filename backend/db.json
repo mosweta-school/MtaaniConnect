@@ -92,6 +92,34 @@
       "longitude": 36.784664806731165,
       "maxAttendees": "10",
       "id": "23pYKl7nAUM"
+    },
+    {
+      "title": "Cheza tournament",
+      "category": "sports",
+      "description": "Under 18 highschool football tournament",
+      "date": "2026-05-16",
+      "time": "10:29",
+      "locationName": "Sunshine Secondary School",
+      "createdBy": "wu7wi4atBgg",
+      "organizerName": "dv2",
+      "latitude": -1.3198305038395004,
+      "longitude": 36.80668830871583,
+      "maxAttendees": "1000",
+      "id": "8C1UcnyEJJg"
+    },
+    {
+      "title": "Random",
+      "category": "music",
+      "description": "Random",
+      "date": "2026-05-15",
+      "time": "10:44",
+      "locationName": "Random",
+      "createdBy": "OGpHLOuuUDs",
+      "organizerName": "deo",
+      "latitude": -1.274480610761434,
+      "longitude": 36.82909011840821,
+      "maxAttendees": "20",
+      "id": "cH_8OBgts1k"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
