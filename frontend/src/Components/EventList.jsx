@@ -13,23 +13,22 @@ function EventList({ events = [] }){
         <h2 className="font-bold text-3xl">My Event List</h2>
 
         <div className='m-6'>
-          {events.map((event) => (
-            <EventCard
-              key={event.id || event._id}
-              event={event}
-            />
-          ))}
+          {events.length === 0 ? (
+            <p className="text-center text-gray-500">
+              No events found. Create your first event!
+            </p>
+          ) : (
+            events.map((event) => (
+              <EventCard
+                key={event.id || event._id}
+                event={event}
+              />
+            ))
+          )}
 
         </div>
 
-
-
-      </div>
-
-       
-       
-       
-       
+      </div> 
        
        </>
     )
