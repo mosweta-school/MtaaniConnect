@@ -73,7 +73,7 @@ export default function ProfileDropdown() {
           </a>
           <a
             href="/create-event"
-            className=" flex block px-4 gap-6 py-2 text-sm text-gray-700 hover:bg-gray-100 "
+            className=" flex gap-6 block px-4 gap-6 py-2 text-sm text-gray-700 hover:bg-gray-100 "
             role="menuitem"
             onClick={() => setIsOpen(false)}
           >

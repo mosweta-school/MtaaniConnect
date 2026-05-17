@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = "https://mtaaniconnectbackend-1.onrender.com/api/auth";
 
 export const registerUser = async (userData) => {
   try {
