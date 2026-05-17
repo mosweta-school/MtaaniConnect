@@ -2,6 +2,7 @@ import { useState} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../Services/authService";
 import Mtaani from "../assets/Mtaan6.PNG";
+import toast,{Toaster} from 'react-hot-toast'
 
 
 function Register() {
@@ -29,6 +30,7 @@ function Register() {
       formData.password !== formData.confirmPassword
     ) {
       setMessage("Passwords do not match");
+      toast.error("Passwords do not match")
       
       return;
     }
@@ -36,6 +38,7 @@ function Register() {
     try {
       const data = await registerUser(formData);
       setMessage(data.message);
+      toast.success(data.message)
 
       console.log(data);
         
@@ -45,6 +48,7 @@ function Register() {
                         
     } catch (error) {
       setMessage(error.response?.data?.message || "Registration failed");
+      toast.error(error.response?.data?.message)
       
     }
   };
