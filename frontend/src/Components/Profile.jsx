@@ -42,7 +42,7 @@ export default function ProfileDropdown() {
   }, []);
 
   return (
-    <div ref={dropdownRef} className={`relative inline-block text-left w-10 h-10 rounded-full flex items-center justify-center text-white font-bold ${getAvatarColor(firstLetter) }z-[9999]`} >
+    <div ref={dropdownRef} className={`relative inline-block text-left w-10 h-10 rounded-full  items-center justify-center text-white font-bold ${getAvatarColor(firstLetter) }z-9999`} >
       {/* Profile Button (User Initial) */}
       <button
       
@@ -83,7 +83,7 @@ export default function ProfileDropdown() {
           <hr className="my-1 border-gray-200" />
           <a
             href="#logout"
-            className="flex gap-6 block px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+            className=" gap-6 block px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
             role="menuitem"
             onClick={logout}
           >
