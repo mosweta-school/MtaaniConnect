@@ -66,16 +66,6 @@
   ],
   "events": [
     {
-      "title": "Nairobi Tech Fair",
-      "category": "tech",
-      "description": "All about technology",
-      "date": "2026-05-13",
-      "time": "15:00",
-      "location": "Lavington",
-      "maxAttendees": "50",
-      "id": "7xBRRJKMA9o"
-    },
-    {
       "title": "Mtaani Connect Open Day",
       "category": "tech",
       "description": "This is a nice event where people interested in learning more about mtaani connect meet.",
@@ -104,13 +94,27 @@
       "id": "23pYKl7nAUM"
     },
     {
-      "title": "sports tournament",
+      "title": "Cheza tournament",
       "category": "sports",
-      "description": "An annual event where football enthusiasts meet to watch entertaining local teams play.",
+      "description": "Under 18 highschool football tournament",
+      "date": "2026-05-16",
+      "time": "10:29",
+      "locationName": "Sunshine Secondary School",
+      "createdBy": "wu7wi4atBgg",
+      "organizerName": "dv2",
+      "latitude": -1.3198305038395004,
+      "longitude": 36.80668830871583,
+      "maxAttendees": "1000",
+      "id": "8C1UcnyEJJg"
+    },
+    {
+      "title": "Random",
+      "category": "music",
+      "description": "Random",
       "date": "2026-05-15",
-      "time": "09:30",
-      "locationName": "Pipeline Stadium",
-      "createdBy": "XCJ7rEmLsA4",
+      "time": "10:44",
+      "locationName": "Random",
+      "createdBy": "OGpHLOuuUDs",
       "organizerName": "deo",
       "latitude": -1.3188329925609479,
       "longitude": 36.8893078782159,

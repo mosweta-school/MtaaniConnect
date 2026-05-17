@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   MapContainer,
   TileLayer,
 } from "react-leaflet";
+import { Link , useParams} from 'react-router-dom';
 
 import LocationPicker from "../Components/LocationPicker";
 
-function CreateEvent(){
+function EditEvent(){
+    const { id } = useParams();
     
     const[title, setTitle] = useState('');
     const[category, setCategory] = useState('');
@@ -14,9 +16,35 @@ function CreateEvent(){
     const[date, setDate] = useState('');
     const[time, setTime] = useState('');
     const[location, setLocation] = useState('');
-    const [selectedPosition, setSelectedPosition] = useState(null);
+    const[selectedPosition, setSelectedPosition] = useState(null);
     const[maxAttendees, setMaxAttendees] = useState(0);
+
+    useEffect(() => {
+        fetch(`http://localhost:8000/events/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        setTitle(data.title);
+        setCategory(data.category);
+        setDescription(data.description);
+        setDate(data.date);
+        setTime(data.time);
+        setLocation(data.locationName || data.location);
+        setMaxAttendees(data.maxAttendees || 0);
+        if (data.latitude && data.longitude) {
+            setSelectedPosition({ lat: data.latitude, lng: data.longitude });
+        }
+    });
+    }, [id]);
+    
+// console.log(id);
+
     const loggedInUser = JSON.parse(localStorage.getItem("user"));
+
     const handleSubmit = async(e)=>{
     // Validate that all required fields are filled out
     if(!title || !category || !description || !date || !time || !location || !selectedPosition){
@@ -50,25 +78,15 @@ const eventData = {
     console.log(eventData);
 
     // Sends the event data to the backend to be stored in the database
-    await fetch('http://localhost:8000/events', {
-        method: 'POST',
+    await fetch(`http://localhost:8000/events/${id}`, {
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(eventData)
     });
     
-    alert('Event created successfully!');
-
-    setTitle('');
-    setCategory('');
-    setDescription('');
-    setDate('');
-    setTime('');
-    setLocation('');
-    setMaxAttendees(0);
-
-
+    alert('Event updated successfully!');
     }
 
   
@@ -77,7 +95,7 @@ const eventData = {
         <section>
 
             <div className='bg-sky-800'>
-                <h2 className=' text-white text-3xl text-center '>Create Event</h2>
+                <h2 className=' text-white text-3xl text-center '>Edit Event</h2>
 
             </div>
 
@@ -89,7 +107,7 @@ const eventData = {
                     <label>Event Title</label>
 
                     <input 
-                    placeholder='Whats the event called?'
+                    placeholder={title}
                     required
                     className='border-2 text-sm py-3 focus:bg-blue-50 border-zinc-400 rounded-xl'
                     onChange={(e) => setTitle(e.target.value)}
@@ -104,7 +122,7 @@ const eventData = {
                     <label>Category</label>
                     <select
                     required
-                    defaultValue=""
+
                     className='border-2  border-zinc-400 rounded-xl p-2'
                     onChange={(e) => setCategory(e.target.value)}
                     value={category}
@@ -125,7 +143,7 @@ const eventData = {
                     <label>Description</label>
                     
                     <textarea 
-                    placeholder='Tell people what to expect....'
+                    placeholder={description}
                     required
                     className='border-2 focus:bg-blue-50 text-sm py-3 border-zinc-400 rounded-xl'
                     onChange={(e) => setDescription(e.target.value)}
@@ -145,6 +163,7 @@ const eventData = {
                         <div>
 
                         <input
+                        placeholder={date}
                         required
                         className='border focus:bg-blue-50 -2 py-3 rounded-xl border-zinc-400'
                         type='date'
@@ -165,6 +184,7 @@ const eventData = {
                         <div>
 
                         <input 
+                        placeholder={time}
                         className=' py-3  focus:bg-blue-50 border-2 rounded-xl border-zinc-400'
                         type='time'
                         onChange={(e) => setTime(e.target.value)}
@@ -189,6 +209,7 @@ const eventData = {
                     onChange={(e) => setLocation(e.target.value)}
                     value={location}
                     type='text'
+                    placeholder={location}
                     ></input>
 
                 </div>
@@ -252,9 +273,9 @@ const eventData = {
 
                 <div className='flex justify-center mt-2'>
                     <button className='bg-sky-600 hover:bg-sky-800 text-white py-3 px-6 rounded-xl font-medium text-sm'
-                    onClick={handleSubmit}  
+                    onClick={handleSubmit}
                     >
-                        Publish Event
+                        Update Event
                     </button>
                 </div>
 
@@ -287,5 +308,6 @@ const eventData = {
         </>
     )
 
+
 }
-export default CreateEvent;
+export default EditEvent;
