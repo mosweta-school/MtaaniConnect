@@ -109,8 +109,8 @@ setTimeout(() => {
         <>
         <section>
 
-            <div className='bg-sky-800 mt-4'>
-                <h2 className='text-2xl text-white font-bold text-center '>Create Event</h2>
+            <div className='bg-sky-800'>
+                <h2 className=' text-white text-3xl text-center '>Create Event</h2>
 
             </div>
 

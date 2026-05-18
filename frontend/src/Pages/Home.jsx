@@ -167,7 +167,7 @@ function Home() {
       {/* SEARCH + FILTER */}
       <section className="max-w-7xl mx-auto px-6 py-8">
 
-        {/* SEARCH */}
+        {/*//////////// SEARCH ////////////*/}
         <div className="flex flex-col md:flex-row gap-4 mb-8">
 
           <input
@@ -225,6 +225,7 @@ function Home() {
             Featured Events
           </h2>
 
+{/*//////////////////////////////view all button////////////////////////*/}
           <button className="text-blue-600 font-medium hover:underline">
             View All
           </button>
@@ -250,7 +251,6 @@ function Home() {
         className="bg-white rounded-3xl shadow-md overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition duration-300"
       >
 
-        <div className="h-48 bg-gray-200"></div>
 
         <div className="p-6">
 

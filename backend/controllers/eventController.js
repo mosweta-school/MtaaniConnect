@@ -115,10 +115,18 @@ export const getMyEvents = async (req, res) => {
 
   try {
 
-    const { userId } = req.params;
+    const userId = req.user?.id;
+
+    if (!userId) {
+      return res.status(401).json({
+        message: "User not authenticated",
+      });
+    }
 
     const response = await axios.get(EVENTS_API);
-
+ 
+    // ==============================================================================================================================
+    // Filtering Events by userID
     const myEvents = response.data.filter(
       (event) =>
         String(event.createdBy) === String(userId)
@@ -137,4 +145,3 @@ export const getMyEvents = async (req, res) => {
 
   }
 };
-

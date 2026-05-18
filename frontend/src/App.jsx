@@ -24,6 +24,7 @@ function App() {
         <Route path="/" element={<Layout> <Home /> </Layout>} />
         <Route path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Register /> } />
+        <Route path="/edit-event/:id" element={<ProtectedRoute><Layout> <EditingEvent /> </Layout> </ProtectedRoute>} />
         
           <Route path="/my-events" element={<ProtectedRoute> <Layout> <MyEvents /> </Layout> </ProtectedRoute>} />
           <Route path="/create-event" element={<ProtectedRoute><Layout> <CreateEvent /> </Layout> </ProtectedRoute>} />

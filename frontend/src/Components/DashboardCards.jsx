@@ -1,4 +1,6 @@
 const DashboardCards = ({ stats }) => {
+
+  // Prepare the data for the cards
   const cards = [
     {
       title: "Total Users",
@@ -15,6 +17,7 @@ const DashboardCards = ({ stats }) => {
   ];
 
   return (
+    // Use a grid layout to display the cards
     <div className="grid md:grid-cols-3 gap-6">
       {cards.map((card, index) => (
         <div
