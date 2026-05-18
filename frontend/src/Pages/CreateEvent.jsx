@@ -1,12 +1,21 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+
 import {
   MapContainer,
   TileLayer,
 } from "react-leaflet";
 
 import LocationPicker from "../Components/LocationPicker";
+import { useNavigate } from 'react-router-dom';
+import { useContext } from "react";
+import { AuthContext } from "../context/authContext";
+
+
+
 
 function CreateEvent(){
+    const { user, token } = useContext(AuthContext);
+    console.log(token)
     
     const[title, setTitle] = useState('');
     const[category, setCategory] = useState('');
@@ -17,7 +26,28 @@ function CreateEvent(){
     const [selectedPosition, setSelectedPosition] = useState(null);
     const[maxAttendees, setMaxAttendees] = useState(0);
     const loggedInUser = JSON.parse(localStorage.getItem("user"));
+    const [searchQuery, setSearchQuery] = useState("");
+    const [suggestions, setSuggestions] = useState([]);
+    const navigate = useNavigate()
+const timeoutRef = useRef(null);
+  const searchLocation = async (query) => {
+  const token = import.meta.env.VITE_MAPBOX_TOKEN;
+
+  const res = await fetch(
+    `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
+      query
+    )}.json?access_token=${token}&autocomplete=true&limit=5&country=ke`
+  );
+
+  const data = await res.json();
+  return data.features;
+};
+
+                
     const handleSubmit = async(e)=>{
+        // Prevents reload of page on form submission
+    e.preventDefault();
+
     // Validate that all required fields are filled out
     if(!title || !category || !description || !date || !time || !location || !selectedPosition){
         alert('Please fill out all required fields');
@@ -30,9 +60,7 @@ function CreateEvent(){
         return;
     }
     
-    // Prevents reload of page on form submission
-    e.preventDefault();
-
+    
     // Stores the table data in an object to be sent to the backend
 const eventData = { 
     title, 
@@ -50,16 +78,20 @@ const eventData = {
     console.log(eventData);
 
     // Sends the event data to the backend to be stored in the database
-    await fetch('http://localhost:8000/events', {
+    await fetch('https://mtaaniconnectbackend-1.onrender.com/api/events', {
         method: 'POST',
+        
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(eventData)
     });
     
     alert('Event created successfully!');
-
+setTimeout(() => {
+                navigate("/");
+                }, 2000);
     setTitle('');
     setCategory('');
     setDescription('');
@@ -67,6 +99,7 @@ const eventData = {
     setTime('');
     setLocation('');
     setMaxAttendees(0);
+    
 
 
     }
@@ -81,7 +114,7 @@ const eventData = {
 
             </div>
 
-            <form>
+            <form onSubmit={handleSubmit}>
 {/*/////////////////////////////////////title input///////////*/}
 
                 <div className='flex-col m-4 flex'>
@@ -103,12 +136,11 @@ const eventData = {
 {/*/////////////////////Event Category Selection/////////////////// */}
                     <label>Category</label>
                     <select
-                    required
-                    defaultValue=""
-                    className='border-2  border-zinc-400 rounded-xl p-2'
-                    onChange={(e) => setCategory(e.target.value)}
-                    value={category}
-                    >
+                        required
+                        className='border-2 border-zinc-400 rounded-xl p-2'
+                        onChange={(e) => setCategory(e.target.value)}
+                        value={category}
+                        >
                         <option value="" disabled>Select a category</option>
                         <option value="music" >Music</option>
                         <option value="sports">Sports</option>
@@ -182,14 +214,58 @@ const eventData = {
                 </div>
 
 {/*/////////////////////////////////////location input///////////////////////////////*/}
-                <div className='flex m-4 flex-col'>
-                    <label>Location</label>
+                
 
-                    <input className='focus:bg-blue-50 rounded-xl py-3 border-2 border-zinc-400' 
-                    onChange={(e) => setLocation(e.target.value)}
-                    value={location}
-                    type='text'
-                    ></input>
+                    <div className="flex m-4 flex-col">
+                        <label>Search Location</label>
+
+                        <input
+  className="focus:bg-blue-50 rounded-xl py-3 border-2 border-zinc-400"
+  value={searchQuery}
+  onChange={(e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+
+    // clear previous timer
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    // if too short → reset suggestions
+    if (value.length < 3) {
+      setSuggestions([]);
+      return;
+    }
+
+    // debounce API call
+    timeoutRef.current = setTimeout(async () => {
+      const results = await searchLocation(value);
+      setSuggestions(results);
+    }, 400);
+  }}
+  placeholder="Search for a place..."
+/>
+                        {suggestions.length > 0 && (
+                        <div className="bg-white border rounded-xl shadow-md max-h-48 overflow-auto">
+                            {suggestions.map((place) => (
+  <div
+    key={place.id}
+    className="p-2 hover:bg-gray-100 cursor-pointer"
+    onClick={() => {
+      const [lng, lat] = place.center;
+
+      setSelectedPosition({ lat, lng });
+      setLocation(place.place_name);
+      setSearchQuery(place.place_name);
+      setSuggestions([]);
+    }}
+  >
+    {place.place_name}
+  </div>
+))}
+                        </div>
+                        )}
+
 
                 </div>
                 
@@ -202,11 +278,14 @@ const eventData = {
                 <div className="h-[300px] overflow-hidden rounded-2xl">
 
                     <MapContainer
-                    center={[-1.286389, 36.817223]}
-                    zoom={13}
-                    scrollWheelZoom
-                    className="h-full w-full"
-                    >
+                        className="h-full w-full"
+                        center={
+                            selectedPosition
+                            ? [selectedPosition.lat, selectedPosition.lng]
+                            : [-1.286389, 36.817223]
+                        }
+                        zoom={13}
+                        >
 
                     <TileLayer
                         attribution="&copy; OpenStreetMap contributors"
@@ -251,8 +330,8 @@ const eventData = {
                 {/*////////////////////button submission///////////////*/}
 
                 <div className='flex justify-center mt-2'>
-                    <button className='bg-sky-600 hover:bg-sky-800 text-white py-3 px-6 rounded-xl font-medium text-sm'
-                    onClick={handleSubmit}  
+                    <button type='submit' className='bg-sky-600 hover:bg-sky-800 text-white py-3 px-6 rounded-xl font-medium text-sm'
+                     
                     >
                         Publish Event
                     </button>

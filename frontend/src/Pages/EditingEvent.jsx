@@ -7,8 +7,13 @@ import { Link , useParams} from 'react-router-dom';
 
 import LocationPicker from "../Components/LocationPicker";
 
+import { useContext } from "react";
+import { AuthContext } from "../context/authContext";
+
+
 function EditEvent(){
     const { id } = useParams();
+    const {token} = useContext(AuthContext)
     
     const[title, setTitle] = useState('');
     const[category, setCategory] = useState('');
@@ -20,7 +25,7 @@ function EditEvent(){
     const[maxAttendees, setMaxAttendees] = useState(0);
 
     useEffect(() => {
-        fetch(`http://localhost:8000/events/${id}`, {
+        fetch(`https://mtaaniconnectbackend-1.onrender.com/api/events/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -78,13 +83,15 @@ const eventData = {
     console.log(eventData);
 
     // Sends the event data to the backend to be stored in the database
-    await fetch(`http://localhost:8000/events/${id}`, {
+    await fetch(`https://mtaaniconnectbackend-1.onrender.com/api/events/${id}`, {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(eventData)
     });
+    
     
     alert('Event updated successfully!');
     }
@@ -99,7 +106,7 @@ const eventData = {
 
             </div>
 
-            <form>
+            <form onSubmit={handleSubmit}>
 {/*/////////////////////////////////////title input///////////*/}
 
                 <div className='flex-col m-4 flex'>
@@ -272,8 +279,8 @@ const eventData = {
                 {/*////////////////////button submission///////////////*/}
 
                 <div className='flex justify-center mt-2'>
-                    <button className='bg-sky-600 hover:bg-sky-800 text-white py-3 px-6 rounded-xl font-medium text-sm'
-                    onClick={handleSubmit}
+                    <button type='submit' className='bg-sky-600 hover:bg-sky-800 text-white py-3 px-6 rounded-xl font-medium text-sm'
+                    
                     >
                         Update Event
                     </button>

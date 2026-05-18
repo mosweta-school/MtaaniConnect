@@ -4,14 +4,16 @@ const API = axios.create({
   baseURL: "https://mtaaniconnectbackend-1.onrender.com/api",
 });
 
-API.interceptors.request.use((config) => {
+// attach token automatically
+API.interceptors.request.use((req) => {
   const token = localStorage.getItem("token");
 
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    req.headers.Authorization = `Bearer ${token}`;
   }
 
-  return config;
+  return req;
 });
+
 
 export default API;
