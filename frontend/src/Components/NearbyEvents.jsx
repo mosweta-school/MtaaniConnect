@@ -3,6 +3,7 @@ import API from "../Services/api";
 import { getUserLocation } from "../utils/location";
 import { calculateDistance } from "../utils/distance";
 import Map from "./Map";
+import socket from "../utils/socket";
 
 const NearbyEvents = () => {
   const [nearbyEvents, setNearbyEvents] = useState([]);
@@ -10,6 +11,7 @@ const NearbyEvents = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  // ================= FETCH EVENTS =================
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -23,11 +25,7 @@ const NearbyEvents = () => {
           : res.data?.events || [];
 
         const enriched = data
-          .filter(
-            (event) =>
-              event.latitude &&
-              event.longitude
-          )
+          .filter((event) => event.latitude && event.longitude)
           .map((event) => {
             const distance = calculateDistance(
               location.lat,
@@ -40,9 +38,7 @@ const NearbyEvents = () => {
           });
 
         const filtered = enriched.filter(
-          (event) =>
-            event.distance !== undefined &&
-            event.distance <= 10
+          (event) => event.distance <= 10
         );
 
         setNearbyEvents(filtered);
@@ -56,20 +52,40 @@ const NearbyEvents = () => {
     fetchEvents();
   }, []);
 
+  // ================= SOCKET (FIXED) =================
+  useEffect(() => {
+    socket.on("Event-Created", (newEvent) => {
+      setNearbyEvents((prev) => [...prev, newEvent]);
+    });
+
+    socket.on("Event-Updated", (updatedEvent) => {
+      setNearbyEvents((prev) =>
+        prev.map((event) =>
+          event.id === updatedEvent.id ? updatedEvent : event
+        )
+      );
+    });
+
+    socket.on("Event-Deleted", (deletedId) => {
+      setNearbyEvents((prev) =>
+        prev.filter((event) => event.id !== deletedId)
+      );
+    });
+
+    return () => {
+      socket.off("Event-Created");
+      socket.off("Event-Updated");
+      socket.off("Event-Deleted");
+    };
+  }, []);
+
+  // ================= RENDER (SAFE) =================
   if (loading) {
-    return (
-      <div className="text-center py-10">
-        Loading nearby events...
-      </div>
-    );
+    return <div className="text-center py-10">Loading nearby events...</div>;
   }
 
   if (error) {
-    return (
-      <div className="text-red-500 text-center">
-        {error}
-      </div>
-    );
+    return <div className="text-red-500 text-center">{error}</div>;
   }
 
   return (
@@ -89,22 +105,10 @@ const NearbyEvents = () => {
           </p>
         ) : (
           nearbyEvents.map((event) => (
-            <div
-              key={event._id}
-              className="bg-white p-5 rounded-2xl shadow-md"
-            >
-              <h2 className="text-xl font-bold">
-                {event.title}
-              </h2>
-
-              <p>{event.location}</p>
-
-              <p>
-                {event.distance
-                  ? event.distance.toFixed(2)
-                  : "0.00"} km away
-              </p>
-
+            <div key={event.id} className="bg-white p-5 rounded-2xl shadow-md">
+              <h2 className="text-xl font-bold">{event.title}</h2>
+              <p>{event.locationName}</p>
+              <p>{event.distance.toFixed(2)} km away</p>
               <p>{event.date}</p>
             </div>
           ))

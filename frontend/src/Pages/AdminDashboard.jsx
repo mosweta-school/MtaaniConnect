@@ -1,17 +1,49 @@
 import { useEffect, useState } from "react";
 import API from "../Services/api";
 import DashboardCards from "../Components/DashboardCards";
+import { io } from "socket.io-client";
 
 function AdminDashboard() {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [allUsers, setAllUsers] = useState([]);
+
+  useEffect(() => {
+  const socket = io("https://mtaaniconnectbackend-1.onrender.com");
+
+  socket.on("User-Updated", (updatedUser) => {
+    setAllUsers((prev) =>
+      prev.map((user) =>
+        user.id === updatedUser.id ? updatedUser : user
+      )
+    );
+  });
+
+  socket.on("User-Status-Changed", (updatedUser) => {
+    setAllUsers((prev) =>
+      prev.map((user) =>
+        user.id === updatedUser.id ? updatedUser : user
+      )
+    );
+  });
+
+  socket.on("User-Deleted", ({ userId }) => {
+    setAllUsers((prev) =>
+      prev.filter((user) => user.id !== userId)
+    );
+  });
+
+  return () => socket.disconnect();
+}, []);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
         const res = await API.get("/admin/");
         setStats(res.data);
+            const usersRes = await API.get("/admin/users");
+    setAllUsers(usersRes.data);
       } catch (err) {
         setError(
           err.response?.data?.message ||
@@ -50,6 +82,47 @@ function AdminDashboard() {
     ...categories.map((category) => category.value || 0),
     1
   );
+
+  const changeUserRole = async (userId, newRole) => {
+  try {
+    await API.patch(`/admin/users/${userId}/role`, {
+      role: newRole,
+    });
+
+    setAllUsers((prev) =>
+      prev.map((user) =>
+        user.id === userId
+          ? { ...user, role: newRole }
+          : user
+      )
+    );
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const toggleUserStatus = async (user) => {
+  try {
+    const updatedStatus = !user.isActive;
+
+    await API.patch(
+      `/admin/users/${user.id}/status`,
+      {
+        isActive: updatedStatus,
+      }
+    );
+
+    setAllUsers((prev) =>
+      prev.map((u) =>
+        u.id === user.id
+          ? { ...u, isActive: updatedStatus }
+          : u
+      )
+    );
+  } catch (err) {
+    console.error(err);
+  }
+};
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-8">
@@ -176,7 +249,7 @@ function AdminDashboard() {
               ) : (
                 recentEvents.map((event, index) => (
                   <tr
-                    key={event._id || event.id || index}
+                    key={event.id || event._id || index}
                     className="border-b border-slate-100"
                   >
                     <td className="py-4 font-medium text-slate-800">
@@ -194,6 +267,73 @@ function AdminDashboard() {
             </tbody>
           </table>
         </div>
+        {/* ================= USERS MANAGEMENT ================= */}
+      <div className="mt-10 rounded-2xl border p-6 bg-white">
+        <h2 className="text-xl font-bold mb-4">User Management</h2>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="text-left border-b">
+                <th className="p-2">Name</th>
+                <th className="p-2">Email</th>
+                <th className="p-2">Role</th>
+                <th className="p-2">Status</th>
+                <th className="p-2">Actions</th>
+              </tr>
+            </thead>
+
+            <tbody>
+  {allUsers.map((user) => (
+    <tr key={user.id} className="border-b">
+      <td className="p-2">{user.name}</td>
+
+      <td className="p-2">{user.email}</td>
+
+      <td className="p-2">
+        <select
+          value={user.role}
+          onChange={(e) =>
+            changeUserRole(user.id, e.target.value)
+          }
+          className="border rounded p-1"
+        >
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+      </td>
+
+      <td className="p-2">
+        <span
+          className={`px-2 py-1 rounded text-white text-xs ${
+            user.isActive
+              ? "bg-green-500"
+              : "bg-red-500"
+          }`}
+        >
+          {user.isActive ? "Active" : "Disabled"}
+        </span>
+      </td>
+
+      <td className="p-2">
+        <button
+          onClick={() => toggleUserStatus(user)}
+          className={`px-3 py-1 rounded text-white ${
+            user.isActive
+              ? "bg-red-500"
+              : "bg-green-500"
+          }`}
+        >
+          {user.isActive ? "Disable" : "Enable"}
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
+          </table>
+        </div>
+      </div>
       </div>
     </section>
   );
