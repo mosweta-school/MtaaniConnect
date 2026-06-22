@@ -1,7 +1,7 @@
-## 🌍 LocalConnect – Location-Based Event Discovery System
+## 🌍 MtaaniConnect – Location-Based Event Discovery System
 ### 📌 Project Overview
 
-LocalConnect is a web-based platform that allows users to create, manage, and discover events happening within their immediate locality using GPS-based location detection.
+MtaaniConnect is a web-based platform that allows users to create, manage, and discover events happening within their immediate locality using GPS-based location detection.
 
 The system connects event organizers with nearby audiences and provides an admin dashboard for monitoring platform activity and usage analytics.
 
